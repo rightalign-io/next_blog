@@ -1,13 +1,15 @@
-#root {
-  // max-width: 1280px;
-  // position: absolute;
-  // margin-top: 5%;
+.headerSM {
+  display: none;
+}
+
+.headerLG {
+  display: flex;
 }
 
 .all {
   // border: red solid 5px;
   // width: 50%;
-  margin-top: 5%;
+  // margin-top: 1em;
 }
 
 .home {
@@ -19,5 +21,14 @@
   max-width: 90vw;
   nav{
     width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .headerLG {
+    display: none;
+  }
+  .headerSM {
+    display: block;
   }
 }

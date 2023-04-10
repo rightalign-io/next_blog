@@ -135,3 +135,13 @@ And lastly if you’d like to remove Cypress entirely, delete the entire `cypres
 ```bash
 npm uninstall cypress
 ```
+
+# PERSONAL NOTES:
+THIS PROJECT IS MADE WITH NEXT ITS MADE WITH VITE + REACTJS
+
+
+## TODO:
+
+- [] Make the individual components { swiperComponent, articleasComponent, cardComponents }
+- [] Add styling to the header component
+- [] make the side add portion of the blog
