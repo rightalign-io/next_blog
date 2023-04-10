@@ -142,6 +142,8 @@ THIS PROJECT IS MADE WITH NEXT ITS MADE WITH VITE + REACTJS
 
 ## TODO:
 
-- [x] Make the individual components { swiperComponent, articleasComponent, cardComponents }
+- [ ] Make the individual components { swiperComponent, articleasComponent, cardComponents }
 - [ ] Add styling to the header component
-- [x] make the side add portion of the blog
+- [ ] Make the side add portion of the blog
+- [ ] Make sections on the main component to have the add section & articles section.
+- [ ] Make the single article component 
