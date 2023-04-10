@@ -29,7 +29,7 @@ export default function Header() {
   const GridItem = tw.div`animate__animated animate__bounceInUpInUp animate__delay-1s`
   return (<>
     <span className="sm:visable md:hidden" >
-      <TemporaryDrawer />
+      {/* <TemporaryDrawer /> */}
     </span>
     <HeaderLG />
     </>
@@ -37,24 +37,23 @@ export default function Header() {
 }
 
 function HeaderLG () {
-  return <header className="headerLG text-gray-600 body-font bg-gray-200">
-  <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+  return <header className="text-gray-600 body-font bg-gray-200 mb-10 md: m-0">
+  <div className=" flex justify-around p-5 flex-row md:mx-auto items-center">
     <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
       <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--GyB_U5jy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a9mi84xpp6i6q4yn28go.png" width="150px" alt="" />
-      
     </a>
-    <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+    <nav className="hidden flex-wrap items-center text-base justify-center md:flex md:visable md:ml-auto md:mr-auto ">
       {
       links.map((link, index) => {
         return <span key={index}> <a href={link.link} className="mr-5 hover:text-gray-900"> {link.name} </a> </span>
-      })}
-      {/* 
-      <a className="mr-5 hover:text-gray-900">Articles</a>
-      <a className="mr-5 hover:text-gray-900">About</a>
-      <a className="mr-5 hover:text-gray-900">Contact</a> */}
+      })
+      }
     </nav>
     <span className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
       <Socials />
+    </span>
+    <span className="sm:visable md:hidden" >
+      <TemporaryDrawer />
     </span>
   </div>
 </header>
@@ -92,14 +91,16 @@ function TemporaryDrawer() {
     >
       <List>
         {links.map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+              <a href={text.link}>
+          <ListItem key={text.name} disablePadding>
+            <ListItemButton> 
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text.name} />
             </ListItemButton>
           </ListItem>
+            </a>
         ))}
       </List>
     </Box>
@@ -119,6 +120,7 @@ function TemporaryDrawer() {
           </Drawer>
         </span>
       ))}
+      
     </div>
   );
 }
