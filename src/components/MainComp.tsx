@@ -1,15 +1,4 @@
-import {
-  Box,
-  Grid,
-  Container,
-  AppBar,
-  IconButton,
-  InputBase,
-  Toolbar,
-  Typography,
-  alpha,
-  styled,
-} from "@mui/material";
+import { Box, Grid, Container, AppBar, IconButton, InputBase, Toolbar, Typography, alpha, styled } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom";
@@ -34,7 +23,7 @@ function ResponsiveGrid() {
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
           {Array.from(Array(6)).map((_, index) => (
-            <Grid item xs={2} sm={4} md={4} key={index}>
+            <Grid className="border-2 border-green-300" item xs={2} sm={4} md={4} key={index}>
               <p>xs=2</p>
             </Grid>
           ))}

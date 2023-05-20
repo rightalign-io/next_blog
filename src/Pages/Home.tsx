@@ -1,5 +1,6 @@
 import { Paper, styled } from "@mui/material";
 import { Link } from "react-router-dom";
+import MainComp from "../components/MainComp";
 
 function Home() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -10,6 +11,7 @@ function Home() {
     color: theme.palette.text.secondary,
   }));
   return (
+    // <MainComp />
     <div className="text-gray-600 body-font overflow-hidden">
       <div className="px-5 md:py-8">
         <div className="lg:w-5/6 mx-auto flex flex-wrap">
