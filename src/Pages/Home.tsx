@@ -2,6 +2,7 @@ import { Paper, styled } from "@mui/material";
 import { Link } from "react-router-dom";
 import MainComp from "../components/MainComp";
 import LeadArticle from "../components/LeadArticle";
+import SubArticle from "../components/SubArticle";
 
 function Home() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -18,30 +19,22 @@ function Home() {
       <span className="w-1/3">
        <LeadArticle />
       </span> 
-      {/* w-3/5 */}
-      <div className="w-3/5 flex">
-        <div className="w-1/3 flex-1 px-3">
-          <div className="post-entry-1 mx-2">
-            <a href="#"><img src="./post-landscape-2.jpg" alt="" className="img-fluid" /></a>
-            <div className="post-meta"><span className="date">Sport</span> <span className="mx-1">•</span> <span>Jul 5th '22</span></div>
-            <h2><a href="#">Let’s Get Back to Work, New York</a></h2>
-          </div>
-        </div>
-        <div className="w-1/3 flex-1 px-3">
-          <div className="post-entry-1 mx-2">
-            <a href="#"><img src="./post-landscape-2.jpg" alt="" className="img-fluid" /></a>
-            <div className="post-meta"><span className="date">Sport</span> <span className="mx-1">•</span> <span>Jul 5th '22</span></div>
-            <h2><a href="#">Let’s Get Back to Work, New York</a></h2>
-          </div>
-        </div>
-        <div className="w-1/3 flex-1 px-3">
-          <div className="post-entry-1 mx-2">
-            <a href="#"><img src="./post-landscape-2.jpg" alt="" className="img-fluid" /></a>
-            <div className="post-meta"><span className="date">Sport</span> <span className="mx-1">•</span> <span>Jul 5th '22</span></div>
-            <h2><a href="#">Let’s Get Back to Work, New York</a></h2>
-          </div>
-        </div>
-        
+      
+      <div className="w-1/3 grid">
+        {[1,2].map((todo, index) =>
+          // Only do this if items have no stable IDs
+          <span key={index}>
+            <SubArticle />
+          </span>
+        )}       
+      </div>
+      <div className="w-1/3 grid">
+        {[1,2].map((todo, index) =>
+          // Only do this if items have no stable IDs
+          <span key={index}>
+            <SubArticle />
+          </span>
+        )}       
       </div>
       {/* <div className="px-5 md:py-8">
         <div className="lg:w-5/6 mx-auto flex flex-wrap">
