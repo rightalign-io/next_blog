@@ -3,10 +3,9 @@ import React from 'react'
 interface Props {}
 
 function LeadArticle() {
-    // const {} = props
 
     return (
-        <div className="ml-20">
+        <div className="ml-20 mt-5">
         <div className="w-1/3 grid md:w-11/12">
           <div className="post-entry-1 lg px-5">
             <a href="#">

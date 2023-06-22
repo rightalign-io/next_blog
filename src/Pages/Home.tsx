@@ -22,12 +22,12 @@ function Home() {
         <span className="w-1/3">
         <LeadArticle />
         </span> 
-        <div className="post-entry-1">
-                    <a href="single-post.html"><img src="assets/img/post-landscape-2.jpg" alt="" className="img-fluid" /></a>
-                    <div className="post-meta"><span className="date">Sport</span> <span className="mx-1">•</span> <span>Jul 5th '22</span></div>
-                    <h2><a href="single-post.html">Let’s Get Back to Work, New York</a></h2>
-                  </div>
-        <div className="w-1/3 grid">
+        {/* <div className="post-entry-1 w-1/3">
+          <a href="#"><img src="./post-landscape-2.jpg" alt="" className="img-fluid" /></a>
+          <div className="post-meta"><span className="date">Sport</span> <span className="mx-1">•</span> <span>Jul 5th '22</span></div>
+          <h2><a href="#">Let’s Get Back to Work, New York</a></h2>
+        </div> */}
+        <div className="w-1/3 grid mt-5">
           {[1,2].map((todo, index) =>
             // Only do this if items have no stable IDs
             <span key={index}>
@@ -35,7 +35,7 @@ function Home() {
             </span>
           )}       
         </div>
-        <div className="w-1/3 grid">
+        <div className="w-1/3 grid mt-5">
           {[1,2].map((todo, index) =>
             // Only do this if items have no stable IDs
             <span key={index}>
