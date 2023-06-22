@@ -686,13 +686,18 @@ section {
 }
 
 .img-bg .img-bg-inner {
+  color:#f2f2f2;
+  font-size: large;
   position: relative;
   z-index: 2;
   max-width: 700px;
   position: relative;
-  padding-left: 100px;
-  padding-right: 100px;
-  margin-bottom: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: auto;
+  padding-bottom: 4em;
+  padding-top: 4em;
+  
 }
 
 @media (max-width: 768px) {
@@ -703,9 +708,16 @@ section {
   }
 }
 
+.img-bg .img-bg-inner h2 {
+  font-size: larger;
+  padding-bottom: 1em;
+  
+}
+
 .img-bg .img-bg-inner h2,
 .img-bg .img-bg-inner p {
   color: var(--color-white);
+  text-align: left;
 }
 
 @media (max-width: 500px) {
