@@ -9,6 +9,30 @@ const Contact =() => {
                 <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Contact Us</h1>
                 <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p>
             </div>
+            <div className="text-gray-600 body-font">
+                <div className="container px-5 py-24 mx-auto">
+                    <div className="flex flex-wrap -m-4">
+                    <div className="p-4 lg:w-1/3">
+                        <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                            
+                            <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">Raclette Blueberry Nextious Level</h1>
+                        </div>
+                    </div>
+                    <div className="p-4 lg:w-1/3">
+                        <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                        <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">Ennui Snackwave Thundercats</h1>
+                      
+                        </div>
+                    </div>
+                    <div className="p-4 lg:w-1/3">
+                        <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                        <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">Selvage Poke Waistcoat Godard</h1>
+                        
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
             <div className="animate__animated animate__bounceInUp animate__delay-1s lg:w-1/2 md:w-2/3 mx-auto">
                 <div className="flex flex-wrap -m-2">
                     <div className="p-2 w-1/2">

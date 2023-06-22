@@ -11,7 +11,7 @@ const HomeSlider = () => {
   ];
 
   return (
-    <Swiper className='h-64 min-h-full my-auto border-t border-2-t border-gray-400 mx-10 px-12'
+    <Swiper className='h-64 min-h-full my-auto mx-10 px-12'
       spaceBetween={50} slidesPerView={1}
       onSlideChange={() => console.log('slide change')} onSwiper={(swiper) => console.log(swiper)} >
         { swipperItems.map((item, index) => {
