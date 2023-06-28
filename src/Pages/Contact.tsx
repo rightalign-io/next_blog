@@ -1,31 +1,44 @@
 import React from 'react'
 import tw from "tailwind-styled-components";
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import MailIcon from '@mui/icons-material/Mail';
 
 const Contact =() => {
     return (
-    <div className="text-gray-600 body-font relative">
+    <div className="text-gray-600 body-font relative bg-gray-100">
         <div className="container px-5 py-24 mx-auto">
-            <div className="animate__animated animate__bounceInUp flex flex-col text-center w-full mb-12">
+            <div className="animate__animated animate__fadeIn flex flex-col text-center w-full mb-12">
                 <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Contact Us</h1>
-                <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p>
+                <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+                    Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.
+                </p>
             </div>
-            <div className="text-gray-600 body-font">
+            <div className="text-green-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
                     <div className="flex flex-wrap -m-4">
-                    <div className="p-4 lg:w-1/3">
-                        <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
-                            
-                            <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">Raclette Blueberry Nextious Level</h1>
+                    <div className="p-4 border-r border-gray-200  lg:w-1/3">
+                        <div className="h-full px-8 pt-16 pb-24 bg-white rounded-lg overflow-hidden text-center relative">
+                            <FmdGoodIcon fontSize="large" className='w-24' />
+                            <h2 className="title-font sm:text-2xl text-lg font-medium text-black mb- pt-5">ADDRESS:</h2>
+                            <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-800 mb-3">A108 Adam Street, NY 535022, USA</h1>
+                            <div className="info-item">
+                            <i className="bi bi-geo-alt"></i>
+                            </div>
                         </div>
                     </div>
-                    <div className="p-4 lg:w-1/3">
-                        <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                    <div className="p-4 border-r border-gray-200  lg:w-1/3">
+                        <div className="h-full  px-8 pt-16 pb-24 bg-white rounded-lg overflow-hidden text-center relative">
+                        <PhoneIphoneIcon fontSize="large" />
+                        <h2 className="title-font sm:text-2xl text-lg font-medium text-black mb-3 pt-5">PHONE:</h2>
                         <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">Ennui Snackwave Thundercats</h1>
                       
                         </div>
                     </div>
-                    <div className="p-4 lg:w-1/3">
-                        <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                    <div className="p-4  lg:w-1/3">
+                        <div className=" bg-white h-full  px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                        <MailIcon  fontSize="large" />
+                        <h2 className="title-font sm:text-2xl text-lg font-medium text-black mb-3 pt-5">EMAIL:</h2>
                         <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">Selvage Poke Waistcoat Godard</h1>
                         
                         </div>
@@ -33,8 +46,8 @@ const Contact =() => {
                     </div>
                 </div>
             </div>
-            <div className="animate__animated animate__bounceInUp animate__delay-1s lg:w-1/2 md:w-2/3 mx-auto">
-                <div className="flex flex-wrap -m-2">
+            <div className=" bg-white border border-gray-300 py-5 mx-auto drop-shadow-md md:w-5/6">
+                <div className="flex flex-wrap -m-2 mx-auto md:w-11/12">
                     <div className="p-2 w-1/2">
                         <div className="relative">
                             <label className="leading-7 text-sm text-gray-600">Name</label>
@@ -57,7 +70,6 @@ const Contact =() => {
                     <button className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Send Meesage</button>
                     </div>
                     <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-                    <a className="text-indigo-500">example@email.com</a>
                     <p className="leading-normal my-5">49 Smith St.
                         <br />Saint Cloud, MN 56301
                     </p>

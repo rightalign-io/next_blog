@@ -5,59 +5,101 @@ const Segment = tw.div`flex-grow sm:text-left text-center mt-6 sm:mt-0`;
 
 function About() {
     return <div className="text-gray-600 body-font">
-    <div className="container px-5 py-24 mx-auto animate__animated animate__bounceInUp">
-      <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
-        <div className="animate__animated animate__bounceInUp animate__delay-2s sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-          </svg>
+    <div className="container px-5 mx-auto animate__animated animate__bounceInUp">
+    <section>
+      <div className="container aos-init aos-animate" data-aos="fade-up">
+        <div className="row">
+          <div className="col-lg-12 text-center mb-5">
+            <h2 className="page-title py-5">About us</h2>
+          </div>
         </div>
-        <Segment>
-          <h2 className="text-gray-900 text-lg title-font font-medium mb-2">Shooting Stars</h2>
-          <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-          <a className="mt-3 text-indigo-500 inline-flex items-center">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </Segment>
+
+        <div className="row mb-5 w-11/12 mx-auto">
+
+          <div className="grid grid-cols-2 gap-1 justify-items-center post-entry-2 ">
+            <a href="#" className="me-4 thumbnail">
+              <img src="./art1.jpg" alt="" className="img-fluid" />
+            </a>
+            <div className="ps-md-5 mt-4 mt-md-0">
+              <div className="post-meta mt-4">About us</div>
+              <h2 className="mb-4 text-2xl">Company History</h2>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+              <p>Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.</p>
+            </div>
+          </div>
+
+          <div className="flex post-entry-2 half mt-5">
+            <a href="#" className="me-4 thumbnail order-2">
+              <img src="./art1.jpg" alt="" className="img-fluid" />
+            </a>
+            <div className="pe-md-5 mt-4 mt-md-0">
+              <div className="post-meta mt-4">Mission &amp; Vision</div>
+              <h2 className="mb-4 text-2xl">Mission &amp; Vision</h2>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+              <p>Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.</p>
+            </div>
+          </div>
+        
+
+        </div>
+
       </div>
-      <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
-        <Segment>
-          <h2 className="text-gray-900 text-lg title-font font-medium mb-2">The Catalyzer</h2>
-          <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-          <a className="mt-3 text-indigo-500 inline-flex items-center">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </Segment>
-        <div className="animate__animated animate__bounceInUp animate__delay-2s sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-            <circle cx="6" cy="6" r="3"></circle>
-            <circle cx="6" cy="18" r="3"></circle>
-            <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-          </svg>
+    </section>
+
+    <section>
+      <div className="container aos-init aos-animate" data-aos="fade-up">
+        <div className="row">
+          <div className="text-center mb-5">
+            <div className="row justify-content-center">
+              <div className="col-lg-6">
+                <h2 className="display-4">Our Team</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil sint sed, fugit distinctio ad eius itaque deserunt doloribus harum excepturi laudantium sit officiis et eaque blanditiis. Dolore natus excepturi recusandae.</p>
+              </div>
+            </div>
+          </div>
+         <span className='grid grid-cols-3 gap-4 content-center'>
+         <div className="w-5/6 justify-items-center grid  mb-5">
+            <img src="./art2.jpg" alt="" className="rounded-full w-24 w-50 mb-4" />
+            <h4>Cameron Williamson</h4>
+            <span className="d-block mb-3 text-uppercase">Founder &amp; CEO</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+          </div>
+          <div className="w-5/6 justify-items-center grid  mb-5">
+            <img src="./art3.jpg" alt="" className="rounded-full w-24 w-50 mb-4" />
+            <h4>Wade Warren</h4>
+            <span className="d-block mb-3 text-uppercase">Founder, VP</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+          </div>
+          <div className="w-5/6 justify-items-center grid  mb-5">
+            <img src="./art3.jpg" alt="" className="rounded-full w-24 w-50 mb-4" />
+            <h4>Jane Cooper</h4>
+            <span className="d-block mb-3 text-uppercase">Editor Staff</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+          </div>
+          <div className=" justify-items-center grid mb-5">
+            <img src="./art3.jpg" alt="" className="rounded-full w-24 w-50 mb-4" />
+            <h4>Cameron Williamson</h4>
+            <span className="d-block mb-3 text-uppercase">Editor Staff</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+          </div>
+          <div className=" justify-items-center grid  mb-5">
+            <img src="./art3.jpg" alt="" className="rounded-full w-24 w-50 mb-4" />
+            <h4>Cameron Williamson</h4>
+            <span className="d-block mb-3 text-uppercase">Editor Staff</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+          </div>
+          <div className=" justify-items-center grid  mb-5">
+            <img src="./art3.jpg" alt="" className="rounded-full w-24 w-50 mb-4" />
+            <h4>Cameron Williamson</h4>
+            <span className="d-block mb-3 text-uppercase">Editor Staff</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+          </div>
+         </span>
         </div>
       </div>
-      <div className="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
-        <div className="animate__animated animate__bounceInUp animate__delay-2s sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-        </div>
-        <Segment>
-          <h2 className="text-gray-900 text-lg title-font font-medium mb-2">The 400 Blows</h2>
-          <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-          <a className="mt-3 text-indigo-500 inline-flex items-center">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </Segment>
-      </div>
-      <button className="flex mx-auto mt-20 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
+    </section>
     </div>
   </div>
 }
