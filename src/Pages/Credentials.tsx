@@ -2,7 +2,12 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import tw from "tailwind-styled-components";
 
-
+type credState = {
+  login:boolean;
+  forgot: boolean;
+  signUp: boolean;
+  stateChange?: Dispatch<SetStateAction<{ login: boolean; forgot: boolean; signUp: boolean; }>>;
+}
 const ArticlesContainer = tw.div`container px-5 py-24 mx-auto animate__animated animate__bounceInUp`;
 const IntroContainer = tw.div`flex flex-wrap w-full mb-20`;
 const ArticlesBody = tw.div`flex flex-wrap -m-4`;
@@ -15,13 +20,13 @@ const Credentials = () => {
       <img className="object-cover object-center rounded md:w-3/4" alt="hero" src="./login.jpg" />
     </div>
     {
-      credential.login && <> <Login /></>
+      credential.login && <> <Login {...credential} stateChange={setCredential} /></>
     }
     {
-      credential.forgot && <> <ForgotPassword /></>
+      credential.forgot && <> <ForgotPassword {...credential} stateChange={setCredential} /></>
     }
     {
-      credential.signUp && <> <SignUp /></>
+      credential.signUp && <> <SignUp {...credential} stateChange={setCredential} /></>
     }
   </div>
 </section>
@@ -30,7 +35,8 @@ const Credentials = () => {
 
 export default Credentials;
 
-const Login = () => {
+const Login = (credential: credState) => {
+  
   return <div className="lg:flex-grow md:w-3/4 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
   <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"> Login</h1>
   <div className="md:w-3/4 bg-white flex px-5 flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0">
@@ -46,14 +52,14 @@ const Login = () => {
    
     <button className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login </button>
     <span className="flex justify-between">
-      <button className="text-xs hover:text-green-400 text-blue-500 mt-3">Forgot Password </button>
-      <button className="text-xs hover:text-green-400 text-blue-500 mt-3">Sign Up</button>
+      <button onClick={() => credential.stateChange({ login: false, forgot: true, signUp: false, })} className="text-xs hover:text-green-400 text-blue-500 mt-3">Forgot Password </button>
+      <button onClick={() => credential.stateChange({ login: false, forgot: false, signUp: true, })} className="text-xs hover:text-green-400 text-blue-500 mt-3">Sign Up</button>
     </span>
 </div>
 </div>
 }
 
-const ForgotPassword = () => {
+const ForgotPassword = (credential: credState) => {
   return <div className="lg:flex-grow md:w-3/4 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
   <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"> Forgot Password</h1>
   <div className="md:w-3/4 bg-white flex px-5 flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0">
@@ -65,13 +71,14 @@ const ForgotPassword = () => {
    
     <button className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Reset Password </button>
     <span className="flex justify-between">
-      <a href="/#" className="text-xs hover:text-green-400 text-blue-500 mt-3">Back </a>
+      <button onClick={() => credential.stateChange({ login: true, forgot: false, signUp: false, })} className="text-xs hover:text-green-400 text-blue-500 mt-3">Back </button>
     </span>
 </div>
 </div>
 }
 
-const SignUp = () => {
+const SignUp = (credential: credState) => {
+  
   return <div className="lg:flex-grow md:w-3/4 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
   <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"> Sign Up</h1>
   <div className="md:w-3/4 bg-white flex px-5 flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0">
@@ -99,7 +106,7 @@ const SignUp = () => {
    
     <button className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Sign Up </button>
     <span className="flex justify-between">
-      <a href="/#" className="text-xs hover:text-green-400 text-blue-500 mt-3"> Back </a>
+    <button onClick={() => credential.stateChange({ login: true, forgot: false, signUp: false, })} className="text-xs hover:text-green-400 text-blue-500 mt-3">Back </button>
     </span>
 </div>
 </div>
