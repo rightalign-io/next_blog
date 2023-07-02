@@ -17,11 +17,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 
 const links = [
+  {link: '/login', name: 'Login', },
   {link: '/', name: 'Blog', },
   // {link: '/articles', name: 'Articles', },
   {link: '/about', name: 'About', },
   {link: '/contact', name: 'Contact', },
-  {link: '/login', name: 'Login', },
 ];
 
 export default function Header() {

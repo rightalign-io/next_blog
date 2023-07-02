@@ -5,9 +5,9 @@ const Segment = tw.div`flex-grow sm:text-left text-center mt-6 sm:mt-0`;
 
 function About() {
     return <div className="text-gray-600 body-font">
-    <div className="container px-5 mx-auto animate__animated animate__bounceInUp">
+    <div className="container px-5 mx-auto an">
     <section>
-      <div className="container aos-init aos-animate" data-aos="fade-up">
+      <div className="container" data-aos="fade-up">
         <div className="row">
           <div className="col-lg-12 text-center mb-5">
             <h2 className="page-title py-5">About us</h2>
@@ -49,7 +49,7 @@ function About() {
     </section>
 
     <section>
-      <div className="container aos-init aos-animate" data-aos="fade-up">
+      <div className="container " data-aos="fade-up">
         <div className="row">
           <div className="text-center mb-5">
             <div className="row justify-content-center">
