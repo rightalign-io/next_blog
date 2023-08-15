@@ -22,7 +22,7 @@ function Home() {
         {/* create the first side shandic  */}
         <span className="w-1/2">
         <LeadArticle />
-        </span> 
+        </span>
         
         <div className="w-1/4 grid mt-5">
           {[1,2].map((todo, index) =>
@@ -40,7 +40,7 @@ function Home() {
             </span>
           )}       
         </div>
-        < Trending />
+        {/* < Trending /> */}
       </div>
     </div>
   );

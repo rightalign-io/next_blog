@@ -23,7 +23,7 @@ const links = [
   {link: '/about', name: 'About', },
   {link: '/contact', name: 'Contact', },
 ];
-
+    
 export default function Header() {
   const Nav = tw.nav`flex justify-between text-base align-center`;
   const Container = tw.header`invisible absolute top-1 left-5 text-gray-600 body-font links md:visible`;
