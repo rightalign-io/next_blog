@@ -15,7 +15,9 @@ const HomeSlider = () => {
       spaceBetween={50} slidesPerView={1}
       onSlideChange={() => console.log('slide change')} onSwiper={(swiper) => console.log(swiper)} >
         { swipperItems.map((item, index) => {
-          return <SwiperSlide data-swiper-slide-index="2" role="group" aria-label="3/4" className='w-11/12 swiper-slide swiper-slide-prev mb-3 bg-center' style={{backgroundImage: `url(${item.bg})`, backgroundRepeat: 'no-repeat'}}>
+          return <SwiperSlide data-swiper-slide-index="2" role="group" aria-label="3/4" key={index}
+          className='w-11/12 swiper-slide swiper-slide-prev mb-3 bg-center' 
+          style={{backgroundImage: `url(${item.bg})`, backgroundRepeat: 'no-repeat'}}>
             <a href="#" className="img-bg d-flex align-items-end">
               {/* <h2 className='text-2xl ml-32 text-white mt-24' >{item.title}</h2> */}
             <div className="img-bg-inner">

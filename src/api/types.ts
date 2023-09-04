@@ -1,15 +1,18 @@
 export interface IUser {
-    name: string;
     email: string;
-    role: string;
-    photo: string;
-    _id: string;
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
+    fullname: string;
+    lastname: string;
+    password: string;
+    // name: string;
+    // photo: string;
+    // createdAt: string;
+    // updatedAt: string;
   }
   
+  export interface UserLoginProps {
+    password: string;
+    email: string;
+  }
   export interface GenericResponse {
     status: string;
     message: string;

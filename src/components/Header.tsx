@@ -14,6 +14,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
+import { useUserStore } from "../store/userStore";
 
 
 const links = [
@@ -25,6 +26,12 @@ const links = [
 ];
     
 export default function Header() {
+  
+  const {email, token} = useUserStore((state) => state)
+  if(email && token ){
+    links[0].link = '/logout'
+    links[0].name = 'Logout'
+  }
   const Nav = tw.nav`flex justify-between text-base align-center`;
   const Container = tw.header`invisible absolute top-1 left-5 text-gray-600 body-font links md:visible`;
   const GridItem = tw.div`animate__animated animate__bounceInUpInUp animate__delay-1s`
@@ -32,12 +39,16 @@ export default function Header() {
     <span className="sm:visable md:hidden" >
       {/* <TemporaryDrawer /> */}
     </span>
-    <HeaderLG />
+    <HeaderLG email={email}  />
     </>
   );
 }
+type HeaderProps={
+  email: string;
+}
 
-function HeaderLG () {
+function HeaderLG (props: HeaderProps) {
+
   return <header className="text-gray-600 body-font bg-gray-200 mb-1 md: m-0">
   <div className=" flex justify-around px-5 flex-row md:mx-auto items-center">
     <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -48,6 +59,12 @@ function HeaderLG () {
       links.map((link, index) => {
         return <span key={index}> <a href={link.link} className="mr-5 hover:text-gray-900"> {link.name} </a> </span>
       })
+      }
+
+      {
+        props.email && <>
+          <div className="m-1 mr-2 w-12 h-12 relative flex justify-center items-center rounded-full bg-red-500 text-xl text-white text-sm">{ props.email.toString().slice(0,4)}</div>
+        </>
       }
     </nav>
     <span className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">

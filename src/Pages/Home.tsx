@@ -5,6 +5,7 @@ import LeadArticle from "../components/LeadArticle";
 import SubArticle from "../components/SubArticle";
 import HomeSlider from "../components/HomeSlider";
 import Trending from "../components/Trending";
+import { blogArticles } from "../api/blog.services";
 
 function Home() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -14,6 +15,7 @@ function Home() {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
+  blogArticles()
   return (
     // <MainComp />
     <div className="">
