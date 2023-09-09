@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 import { useUserStore } from "../store/userStore";
 import { IUser, Post, UserLoginProps } from "./types";
 
@@ -48,16 +48,11 @@ export const userRegistration = async (data:IUser) =>{
     ! when making post requests that need to be authentified use the headers -> Authorization attribute so the work.
 */
 export const blogArticles = async () =>{ 
-    const tokenString = sessionStorage.getItem('user') as string
-    const token = JSON.parse(tokenString).token
-    // console.log(token);
     try {
-        const articles = await axios.get(`${api_baseUrl}/posts/`
-        );
-        // attempt setting the articles up state.
-        return articles.data;
+       return (await axios.get(`${api_baseUrl}/posts/`))
     } catch (error) {
         console.log('Articles Error\n', error)
+        return []
     }
 }
 
