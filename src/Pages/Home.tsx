@@ -6,6 +6,9 @@ import SubArticle from "../components/SubArticle";
 import HomeSlider from "../components/HomeSlider";
 import Trending from "../components/Trending";
 import { blogArticles } from "../api/blog.services";
+import { useUserStore } from "../store/userStore";
+import { Post } from "../api/types";
+import { useState } from "react";
 
 function Home() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -15,7 +18,12 @@ function Home() {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-  blogArticles()
+
+  const [leadArticles, setLeadArticles] = useState([])
+  // const artcles: Post[] =  []
+  const articles = blogArticles().then((data: any) => { return data })
+  console.log("articles \n", articles);
+
   return (
     // <MainComp />
     <div className="">
@@ -23,7 +31,7 @@ function Home() {
       <div className="text-gray-600 body-font overflow-hidden flex space-between">
         {/* create the first side shandic  */}
         <span className="w-1/2">
-        <LeadArticle />
+        <LeadArticle article={leadArticles[0]} />
         </span>
         
         <div className="w-1/4 grid mt-5">

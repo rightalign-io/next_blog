@@ -13,7 +13,6 @@ import Fade from "@mui/material/Fade";
 ReactDOM.render(
   <BrowserRouter>
     <div className="all">
-      <Header />
       <App />
     </div>
   </BrowserRouter>,

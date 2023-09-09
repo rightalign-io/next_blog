@@ -1,11 +1,13 @@
 import Button from "@mui/material/Button";
 import tw from "tailwind-styled-components";
+import { getPhotosByQuery } from "../api/unsplash.service";
 
 
 const ArticlesContainer = tw.div`container px-5 py-24 mx-auto animate__animated animate__bounceInUp`;
 const IntroContainer = tw.div`flex flex-wrap w-full mb-20`;
 const ArticlesBody = tw.div`flex flex-wrap -m-4`;
 const Articles = () => {
+  // console.log('images\n: ', getPhotosByQuery({query: 'photos'}));
   return <div className="text-gray-600 body-font">
       <ArticlesContainer>
         <IntroContainer className="">

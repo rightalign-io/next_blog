@@ -1,13 +1,25 @@
 export interface IUser {
     email: string;
-    fullname: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
     password: string;
+    loggedIn: boolean;
     // name: string;
     // photo: string;
     // createdAt: string;
     // updatedAt: string;
   }
+export interface Post {
+  userId: Number;
+  title: String;
+  tzpe: String;
+  image: String;
+  author: String;
+  // _id: ObjectId;
+  datePublished: String;
+  headline: String;
+  dateModified: String;
+}
   
   export interface UserLoginProps {
     password: string;
@@ -30,4 +42,13 @@ export interface IUser {
     };
   }
   
-  
+  // env.local
+export const NEXT_PUBLIC_UNSPLASH_CLIENT_ID="0xMKBN204nHKnZ5xjrcv96yOqVRsuemZa6mQfXgjEv0"
+
+
+export const links = [
+  {link: '/', name: 'Blog', },
+  // {link: '/articles', name: 'Articles', },
+  {link: '/about', name: 'About', },
+  {link: '/contact', name: 'Contact', },
+];

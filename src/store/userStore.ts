@@ -7,9 +7,9 @@ import create from 'zustand';
 interface IUser {
     email: string;
     token: string;
+    img: string;
+    loggedIn?: boolean;
     updateUser: (user: IUser) => void
-    // fullname: string;
-    // password: string;
     // name: string;
     // photo: string;
     // createdAt: string;
@@ -18,13 +18,16 @@ interface IUser {
 
 export const useUserStore = create<IUser>( (set, get) => ({
     email: '',
-    // lastname: '',
-    // fullname: '', 
     token: '', 
+    img: '', 
+    loggedIn: false,
+    // fullname: '', 
     updateUser: (user: IUser) => {
         set({
             email: user.email,
-            token: user.token
+            token: user.token,
+            img: user.img, 
+            loggedIn: user.loggedIn
         })
-    } 
+    },
 }));

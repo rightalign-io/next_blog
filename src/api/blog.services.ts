@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useUserStore } from "../store/userStore";
-import { IUser, UserLoginProps } from "./types";
+import { IUser, Post, UserLoginProps } from "./types";
 
 /*
     * Todo:
@@ -21,42 +21,43 @@ export const userLogin = async (data:UserLoginProps) =>{
             'Content-Type': 'application/json'
         } });
 
-        return token.data;
-        
+        return token.data;        
     } catch (error) {
         console.log('Login Error\n', error);
         return false
     }
 }
 
-export const userRegistration = async (data:UserLoginProps) =>{ 
+export const userRegistration = async (data:IUser) =>{ 
     
     try {
-        let token = await axios.post(`${api_baseUrl}/user/register`, JSON.stringify(data), {
+        let response = await axios.post(`${api_baseUrl}/user/register`, JSON.stringify(data), {
         headers: {
             'Content-Type': 'application/json'
         } });
 
-        return token;
+        return response.data;
         
     } catch (error) {
-        console.log('Login Error\n', error)
+        console.log('Registration Error\n', error)
     }
 }
-
+/*
+    * First model for requests that will be needing authentication on the server side
+    ~ this function will be called after we log in to get the articles.
+    ! when making post requests that need to be authentified use the headers -> Authorization attribute so the work.
+*/
 export const blogArticles = async () =>{ 
-    const token = useUserStore((state) => state.token)
-
+    const tokenString = sessionStorage.getItem('user') as string
+    const token = JSON.parse(tokenString).token
+    // console.log(token);
     try {
-        let posts = await axios.get(`${api_baseUrl}/posts/`, {
-        headers: {
-            'authentication': `${token}`
-        } });
-        console.log('Posts: \n', posts);
-        return token;
-        
+        const articles = await axios.get(`${api_baseUrl}/posts/`
+        );
+        // attempt setting the articles up state.
+        return articles.data;
     } catch (error) {
-        console.log('Login Error\n', error)
+        console.log('Articles Error\n', error)
     }
 }
 

@@ -147,3 +147,9 @@ THIS PROJECT IS MADE WITH NEXT ITS MADE WITH VITE + REACTJS
 - [ ] Make the side add portion of the blog
 - [ ] Make sections on the main component to have the add section & articles section.
 - [ ] Make the single article component 
+- [ ] Add axios & pull data from public api.
+- [ ] Add Zustand & pull data from the official blog api.
+- [ ] Solidify the functionality for the blog login & registration.
+- [ ] Find out why we cannot hold the login state in the store and have it on the entire app.
+- [ ] Protect routes so use cannot access login without logging out.
+
