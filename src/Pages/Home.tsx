@@ -37,8 +37,7 @@ function Home() {
   */
   const midpoint = Math.ceil(initialArticles.length / 2);
   const row1 = initialArticles.splice(initialArticles.length/2, 0)
-  const setArticles = useArticleStore((article) => {return article.setArticles})
-  console.log('rows: ', {r1: useArticleStore(state => state.articles), a1: initialArticles});
+  // console.log('rows: ', {r1: useArticleStore(state => state.articles), a1: initialArticles});
 
   return (
     <div className="">
