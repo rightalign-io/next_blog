@@ -138,6 +138,21 @@ npm uninstall cypress
 
 # PERSONAL NOTES:
 THIS PROJECT IS MADE WITH NEXT ITS MADE WITH VITE + REACTJS
+- MongoDB has docs for typescript which is helpful: [Typescript Guide](https://www.mongodb.com/docs/drivers/node/current/fundamentals/typescript)
+- Zustand has guides for react ts: [Typescript Guide](https://docs.pmnd.rs/zustand/guides/typescript)
+> Example for creating and using state for articles / Auth functionality.
+```typescript
+  interface BearState {
+    bears: number
+    increase: (by: number) => void
+  }
+
+  const useBearStore = create<BearState>()((set) => ({
+    bears: 0,
+    increase: (by) => set((state) => ({ bears: state.bears + by })),
+  }))
+```
+
 
 
 ## TODO:

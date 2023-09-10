@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import { convertLength } from "@mui/material/styles/cssUtils";
 import { Formik } from "formik";
-import { Dispatch, SetStateAction, useState } from "react";
+import {  Dispatch, SetStateAction, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import tw from "tailwind-styled-components";
 import { userLogin, userRegistration } from "../api/blog.services";
@@ -38,7 +38,7 @@ const ArticlesBody = tw.div`flex flex-wrap -m-4`;
 const Credentials = (props: credentialsProps) => {
   const {email, img } = useUserStore(state => state)
   console.log('credentials: ', email, img);
-  const [credential, setCredential] = useState({login:true, forgot: false, signUp: false, user: ''});
+  const [credential, setCredential] = useState({login:true, forgot: false, signUp: false });
   
   return <section className="text-gray-600 body-font">
   <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
@@ -47,7 +47,7 @@ const Credentials = (props: credentialsProps) => {
     </div>
     
     {
-      credential.login && <> <Login  {...credential} stateChange={() => props.updateUser} /></>
+      credential.login && <> <Login  {...credential} stateChange={() => {props.updateUser}} /></>
     }
     {
       credential.forgot && <> <ForgotPassword {...credential} stateChange={() => setCredential} /></>
@@ -56,6 +56,10 @@ const Credentials = (props: credentialsProps) => {
       credential.signUp && <> <SignUp {...credential} stateChange={() => setCredential} /></>
     }
   </div>
+    <span className="flex justify-between md:w-1/2 md: mx-auto">
+      <button onClick={ (event) => {event.preventDefault(); setCredential({ login: false, forgot: true, signUp: false, })}} className="text-xs hover:text-green-400 text-blue-500 mt-3">Forgot Password </button>
+      <button onClick={(event) => {event.preventDefault(); setCredential({ login: false, forgot: false, signUp: true, })}} className="text-xs hover:text-green-400 text-blue-500 mt-3">Sign Up</button>
+    </span>
 </section>
   
 };
@@ -103,10 +107,9 @@ const Login = (credential: credState) => {
           isSubmitting,
           /* and other goodies */
         }) => (
-          <form className="lg:flex-grow md:w-3/4 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center" onSubmit={handleSubmit}>
-              {/* <div className="lg:flex-grow md:w-3/4 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center"> */}
-              <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"> Login</h1>
+          <form className="lg:flex-grow md:w-3/4 lg:pl-24 md:pl-16 flex flex-col md:items-starts md:text-left items-left text-center" onSubmit={handleSubmit}>
               <div className="md:w-3/4 bg-white flex px-5 flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0">
+                <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"> Login</h1>
                 <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">We're happy for you to join us,</h2>
                 <div className="relative mb-4">
                   <label htmlFor="email" className="leading-7 text-sm text-gray-600">User Name</label>
@@ -128,12 +131,8 @@ const Login = (credential: credState) => {
               
                 <button type="submit" disabled={isSubmitting} 
                   className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login </button>
-                <span className="flex justify-between">
-                  <button onClick={() => credential.stateChange({ login: false, forgot: true, signUp: false, })} className="text-xs hover:text-green-400 text-blue-500 mt-3">Forgot Password </button>
-                  <button onClick={() => credential.stateChange({ login: false, forgot: false, signUp: true, })} className="text-xs hover:text-green-400 text-blue-500 mt-3">Sign Up</button>
-                </span>
+                
             </div>
-            
           </form>
         )}
     </Formik>

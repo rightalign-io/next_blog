@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios"
+import { useArticleStore } from "../store/articlesStore";
 import { useUserStore } from "../store/userStore";
 import { IUser, Post, UserLoginProps } from "./types";
 
@@ -47,15 +48,23 @@ export const userRegistration = async (data:IUser) =>{
     ~ this function will be called after we log in to get the articles.
     ! when making post requests that need to be authentified use the headers -> Authorization attribute so the work.
 */
-export const blogArticles = async () =>{ 
+export const blogArticles = async ():Promise<AxiosResponse<any, any> | never[]> =>{ 
+    
     try {
-       return (await axios.get(`${api_baseUrl}/posts/`))
+       return await axios.get(`${api_baseUrl}/posts/`)
     } catch (error) {
         console.log('Articles Error\n', error)
         return []
     }
 }
 
+export const getViewArticle = (id: number) => {
+    try {
+        const article = axios.get(`${api_baseUrl}/posts/?id=${id}`)
+    } catch (error) {
+        console.log('get view articel error:\n', error);
+    }
+}
 
 
 

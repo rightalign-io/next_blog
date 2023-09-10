@@ -3,7 +3,7 @@ import tw from "tailwind-styled-components";
 
 const Segment = tw.div`flex-grow sm:text-left text-center mt-6 sm:mt-0`;
 
-const About = () => {
+function About() {
     return <div className="text-gray-600 body-font">
     <div className="container px-5 mx-auto an">
     <section>

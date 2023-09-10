@@ -8,7 +8,14 @@ import Trending from "../components/Trending";
 import { blogArticles } from "../api/blog.services";
 import { useUserStore } from "../store/userStore";
 import { Post } from "../api/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import SingleArticle from "../components/SingleArticle";
+import { useArticleStore } from "../store/articlesStore";
+
+interface HomeProps {
+  articles: Post[];
+}
 
 function Home() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -18,38 +25,40 @@ function Home() {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-
-  const [leadArticles, setLeadArticles] = useState([])
-  // const artcles: Post[] =  []
-  const articles = blogArticles().then((data: any) => { return data })
-  console.log("articles \n", articles);
+  const initiallPost = { 
+    title:'', type: '', _id: 0, body:'',
+    image: '',  author: '', datePublished: '',  headline: '',  dateModified: ''
+  }
+  const [leadArticle, setLeadArticle] = useState(initiallPost)
+  const [initialArticles, setInitialArticles] = useState<Post[]>([initiallPost])
+  const articles = useArticleStore((state) => state.articles)
+  /*
+  * cut the array in half then show the 
+  */
+  const midpoint = Math.ceil(initialArticles.length / 2);
+  const row1 = initialArticles.splice(initialArticles.length/2, 0)
+  const setArticles = useArticleStore((article) => {return article.setArticles})
+  console.log('rows: ', {r1: useArticleStore(state => state.articles), a1: initialArticles});
 
   return (
-    // <MainComp />
     <div className="">
       <HomeSlider />
-      <div className="text-gray-600 body-font overflow-hidden flex space-between">
+      {/* <MainComp /> */}
+      <div className="text-gray-600 body-font overflow-hidden flex flex-wrap space-between">
         {/* create the first side shandic  */}
-        <span className="w-1/2">
-        <LeadArticle article={leadArticles[0]} />
+        <span className="w-1/3">
+          {initialArticles && <LeadArticle article={leadArticle} />}
         </span>
         
-        <div className="w-1/4 grid mt-5">
-          {[1,2].map((todo, index) =>
+        <div className="w-1/2 flex flex-wrap mt-5">
+          {articles && articles.map((article, index) =>
             // Only do this if items have no stable IDs
-            <span key={index}>
-              <SubArticle />
+            <span className="w-1/2" key={index}>
+              <SubArticle article={article}  />
             </span>
           )}       
         </div>
-        <div className="w-1/4 grid mt-5">
-          {[1,2].map((todo, index) =>
-            // Only do this if items have no stable IDs
-            <span key={index}>
-              <SubArticle />
-            </span>
-          )}       
-        </div>
+         
         {/* < Trending /> */}
       </div>
     </div>

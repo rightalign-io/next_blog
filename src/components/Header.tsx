@@ -81,8 +81,7 @@ const HeaderLG = (props: HeaderProps) => {
 
 const Header = (status: { img: string, email: string, loggedIn: false }) => {
   const [loginItem, setLoginItem] = useState({link: '/login', name: 'Logout', })
-  const userLoginState = useUserStore(state => state)
-  console.log('header: ', userLoginState);
+  
   
   /*
   * if the user is not logged in make sure the header links include logout.
