@@ -6,23 +6,23 @@ interface LeadArticleProps {
 }
 
 function LeadArticle(props: LeadArticleProps) {
-  // console.log('lead Article: ', props.article);
 
   return (
       <div className="ml-20 mt-5">
       <div className="w-1/3 grid md:w-11/12">
         <div className="post-entry-1 lg px-5">
           <a href="#">
-            <img src="./p1.jpg" alt="" className="img-fluid"/>
+            <img src={props.article.image || "./p1.jpg"} alt="" className="img-fluid"/>
           </a>
           <div className="post-meta">
-            <span className="date">Culture</span> <span className="mx-1">•</span> <span>Jul 5th '22</span>
+            <span className="date">{props.article.type}</span> <span className="mx-1">•</span> <span>{props.article.datePublished}</span>
             </div>
           <h2>
-            <a href="#" className="leading-3 text-lg">11 Work From Home Part-Time Jobs You Can Do Now</a>
+            <a href="#" className="leading-3 text-lg">{props.article.headline}</a>
           </h2>
-          <p className="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus exercitationem? Nihil tempore odit ab minus eveniet praesentium, similique blanditiis molestiae ut saepe perspiciatis officia nemo, eos quae cumque. Accusamus fugiat architecto rerum animi atque eveniet, quo, praesentium dignissimos</p>
-  
+          <p className="">
+            {props.article.body}
+            </p>
           <div className="author flex ">
             <div className="photo">
               <img src="./person-1.jpg" alt="" className="img-fluid"/>

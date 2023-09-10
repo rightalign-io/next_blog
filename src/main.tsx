@@ -10,6 +10,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 
+// const root = ReactDOM.createPortal(document.get)
 ReactDOM.render(
   <BrowserRouter>
     <div className="all">
