@@ -58,9 +58,20 @@ export const blogArticles = async ():Promise<AxiosResponse<any, any> | never[]> 
     }
 }
 
-export const getViewArticle = (id: number) => {
+export const saveArticle = (updates: Post) => {
     try {
-        const article = axios.get(`${api_baseUrl}/posts/?id=${id}`)
+        const tokenString = sessionStorage.getItem('user') as string
+        const sessionData = JSON.parse(tokenString).token
+        if(sessionData){
+            
+        const article = axios.put(`${api_baseUrl}/posts/edit`, JSON.stringify(updates), {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: sessionData,
+            }}).then(res => {
+                console.log('edit response: ', res);
+            })
+        }
     } catch (error) {
         console.log('get view articel error:\n', error);
     }

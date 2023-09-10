@@ -14,7 +14,7 @@ interface ArticlesState {
 
 type ArticlesAction = {
     setArticles: (articles: ArticlesState['articles']) => void /* tell us if you added successfully */
-    updateArticle: (updates: ArticlesState['updatedArticle']) => void
+    updateArticle: (updatedArticle: ArticlesState['updatedArticle']) => void
 }
   
 export const useArticleStore = create<ArticlesState & ArticlesAction> (( set ) => ({
@@ -31,8 +31,7 @@ export const useArticleStore = create<ArticlesState & ArticlesAction> (( set ) =
     },
     articles: [],
     setArticles: (articles) => set(() => ({ articles: articles })),
-    updateArticle: (updates) =>{
-        console.log(updates);
-        // set(() => ({ updates.updatedArticle: updates }))
+    updateArticle: (updatedArticle) =>{
+        set(() => ({ updatedArticle: updatedArticle }))
     }
     }))
