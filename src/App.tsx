@@ -23,6 +23,7 @@ function App() {
   const { email, loggedIn, img, updateUser } = useUserStore((state) => {return state})
   const tokenString = sessionStorage.getItem('user') as string
   const sessionData = JSON.parse(tokenString)
+  const currentArticle = useArticleStore(state => state.updatedArticle)
 
   const setArticles = useArticleStore((article) => {return article.setArticles})
     useEffect(() => {
@@ -34,7 +35,7 @@ function App() {
     })
     }, []);
 
-  
+  console.log('articles: ', );
   return (
     <div className="App">
       <Header email={sessionData?.email || email} img={sessionData?.img || img} loggedIn={sessionData?.logged || loggedIn} />

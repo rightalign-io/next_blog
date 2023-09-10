@@ -18,7 +18,6 @@ const SubArticle = ( article: SubArticleProps) => {
     }
     
     const navigate = useNavigate()
-    // console.log('article ', SelectArticle);
     return <>
       <div className=" m-5 max-w-sm rounded overflow-hidden shadow-lg">
         <img className="w-full" src="./art1.jpg" alt="Sunset in the mountains" />
@@ -35,7 +34,6 @@ const SubArticle = ( article: SubArticleProps) => {
         </div>
       </div>
     </>
-    
 }
 
 export default SubArticle;

@@ -30,7 +30,7 @@ const HeaderLG = (props: HeaderProps) => {
     ~ When user has logged in we remove guest & add the user image else show the gues thing. 
     ~ get the user from store.
   */
- return <header className="text-gray-600 body-font bg-gray-200 mb-1 md: m-0">
+ return <header className=" text-gray-600 body-font bg-gray-200 mb-1 md: m-0">
     <div className=" flex justify-around px-5 flex-row md:mx-auto items-center">
       <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
         <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--GyB_U5jy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a9mi84xpp6i6q4yn28go.png" width="150px" alt="" />
@@ -38,20 +38,20 @@ const HeaderLG = (props: HeaderProps) => {
       <nav className="hidden flex-wrap items-center text-base justify-center md:flex md:visable md:ml-auto md:mr-auto ">
         
         { props.email === '' ? 
-        ( <span > 
+          (<span > 
             <a href={loginItem.link} className="mr-5 hover:text-gray-900"> {loginItem.name} </a> 
           </span>) : 
-          <span > 
+          (<span > 
             <a href="/" onClick={() => { sessionStorage.removeItem('user')}} className="mr-5 hover:text-gray-900"> Logout </a> 
-          </span>
+          </span>)
         }
         {
           links.map((link, index) => {
-          return <span key={index}> 
-          <a href={link.link} className="mr-5 hover:text-gray-900"> {link.name} </a> 
-          </span>
-        })
-      }
+            return <span key={index}> 
+              <a href={link.link} className="mr-5 hover:text-gray-900"> {link.name} </a> 
+            </span>
+          })
+        }
 
         {
           !props.email ? 
@@ -82,15 +82,9 @@ const HeaderLG = (props: HeaderProps) => {
 const Header = (status: { img: string, email: string, loggedIn: false }) => {
   const [loginItem, setLoginItem] = useState({link: '/login', name: 'Logout', })
   
-  
   /*
   * if the user is not logged in make sure the header links include logout.
   */
- if(status.email != '' && links[0] != loginItem){
-   // links.unshift(loginItem)
-  }else {
-    
-  }
 
   const Nav = tw.nav`flex justify-between text-base align-center`;
   const Container = tw.header`invisible absolute top-1 left-5 text-gray-600 body-font links md:visible`;

@@ -29,9 +29,9 @@ function Home() {
     title:'', type: '', _id: 0, body:'',
     image: '',  author: '', datePublished: '',  headline: '',  dateModified: ''
   }
-  const [leadArticle, setLeadArticle] = useState(initiallPost)
   const [initialArticles, setInitialArticles] = useState<Post[]>([initiallPost])
   const articles = useArticleStore((state) => state.articles)
+  const [leadArticle, setLeadArticle] = useState(articles[0])
   /*
   * cut the array in half then show the 
   */
@@ -53,7 +53,7 @@ function Home() {
           {articles && articles.map((article, index) =>
             // Only do this if items have no stable IDs
             <span className="w-1/2" key={index}>
-              <SubArticle article={article}  />
+              <SubArticle article={article} />
             </span>
           )}       
         </div>

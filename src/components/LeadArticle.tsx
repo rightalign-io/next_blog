@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Post } from '../api/types';
+import EditArticleForm from './EditArticleForm';
+import SingleArticle from './SingleArticle';
 
 interface LeadArticleProps {
   article: Post;
 }
 
 function LeadArticle(props: LeadArticleProps) {
-
-  return (
-      <div className="ml-20 mt-5">
+  // console.log('Lead: ', props.article);
+  
+  const [editing, setEditing] = useState<boolean>(false);
+  return <>
+    {
+      !editing ? <div className="ml-20 mt-5">
       <div className="w-1/3 grid md:w-11/12">
         <div className="post-entry-1 lg px-5">
           <a href="#">
@@ -23,19 +28,25 @@ function LeadArticle(props: LeadArticleProps) {
           <p className="">
             {props.article.body}
             </p>
-          <div className="author flex ">
+          <div className="author flex mt-5 items-center">
             <div className="photo">
               <img src="./person-1.jpg" alt="" className="img-fluid"/>
-              </div>
+            </div>
             <div className="name">
-              <h3 className="m-0 p-0">Cameron Williamson</h3>
+              <h3 className="mt-5 p-0">{props.article.author}</h3>
             </div>
           </div>
         </div>      
       </div>
-  
-    </div>
-  )
+      <button onClick={()=> setEditing(true)} className="w-5/6 h-10 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+        view
+      </button> 
+    </div> : <>
+      <EditArticleForm article={props.article} setEditing={setEditing}/>
+    </>
+    }
+  </>
 }
 
-export default LeadArticle;
+export default LeadArticle; 
+

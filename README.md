@@ -152,19 +152,20 @@ THIS PROJECT IS MADE WITH NEXT ITS MADE WITH VITE + REACTJS
     increase: (by) => set((state) => ({ bears: state.bears + by })),
   }))
 ```
-
+- Capture state at your highest component on the DOM tree, so when you route away the store does not get re-initialized. I could be wrong about this but that's the fix i had for issue with state not being persistant. No, I did not want to use local or sesion storage at the time.  
 
 
 ## TODO:
 
-- [ ] Make the individual components { swiperComponent, articleasComponent, cardComponents }
-- [ ] Add styling to the header component
-- [ ] Make the side add portion of the blog
-- [ ] Make sections on the main component to have the add section & articles section.
-- [ ] Make the single article component 
-- [ ] Add axios & pull data from public api.
-- [ ] Add Zustand & pull data from the official blog api.
+- [x] Make the individual components { swiperComponent, articleasComponent, cardComponents }
+- [x] Add styling to the header component
+- [x] Make the side add portion of the blog
+- [x] Make sections on the main component to have the add section & articles section.
+- [x] Make the single article component & add edit for login.  
+- [x] Add axios & pull data from public api.
+- [x] Add Zustand & pull data from the official blog api.
 - [ ] Solidify the functionality for the blog login & registration.
-- [ ] Find out why we cannot hold the login state in the store and have it on the entire app.
+- [x] Find out why we cannot hold the login state in the store and have it on the entire app, *updating state in wrong place in the DOM hierarchy*
 - [ ] Protect routes so use cannot access login without logging out.
+- [ ] Add error handling.
 

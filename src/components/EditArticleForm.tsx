@@ -1,17 +1,27 @@
 import { Formik } from "formik";
+import { useNavigate } from "react-router";
 import { saveArticle } from "../api/blog.services";
+import { Post } from "../api/types";
 import { useArticleStore } from "../store/articlesStore";
+
+
+interface EditProps {
+  setEditing: (editSTate: boolean) => void;
+  article: Post;
+}
 
 const EditArticleForm = (props: EditProps) => {
     const { updateArticle, updatedArticle } = useArticleStore(state => state)
-    // console.log('editing: ', props.article);
+    console.log('editing: ', props.article);
+    const navigate = useNavigate();
+
     return (<>
       <Formik
           initialValues={{ 
             title: props.article.title, body: props.article.body, 
             author: props.article.author, image: props.article.image,
             type: props.article.type, headline:props.article.headline, 
-            dateModified: `${Date.now()}`, datePublished: props.article.datePublished, _id:0}}
+            dateModified: `${Date.now()}`, datePublished: props.article.datePublished, _id:props.article._id}}
           validate={values => {
             // const errors:{email: string} = {email: ''};
             if (!values.body) {
@@ -26,9 +36,10 @@ const EditArticleForm = (props: EditProps) => {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(async () => {
               setSubmitting(false);
-                  navigate('/')
-                updateArticle(values);
-                saveArticle(values);
+              updateArticle(values);
+              saveArticle(values);
+              navigate('/')
+              // console.log(values);
             }, 400);
           }}
         >
@@ -56,6 +67,15 @@ const EditArticleForm = (props: EditProps) => {
                       {/* {errors.email && touched.email && errors.email} */}
                   </div>
                   <div className="relative mb-4">
+                    <label htmlFor="headline" className="leading-7 text-sm text-gray-600">Headline</label>
+                    <input type="text" id="headline" name="headline" 
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.headline} 
+                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                      {/* {errors.email && touched.email && errors.email} */}
+                  </div>
+                  <div className="relative mb-4">
                     <label htmlFor="body" className="leading-7 text-sm text-gray-600"> Article Body </label>
                     <textarea id="body" name="body" cols={10} rows={5}
                       onChange={handleChange}
@@ -64,12 +84,17 @@ const EditArticleForm = (props: EditProps) => {
                       className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" >
                     </textarea>
                   </div>
-                
-                  <button type="submit" disabled={isSubmitting} 
-                    className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"> 
-                    Publish 
-                  </button>
-                  
+                  <div className="flex justify-between gap-8">
+                    <button type="submit" disabled={isSubmitting} 
+                      className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"> 
+                      Publish 
+                    </button>
+                    <button disabled={isSubmitting} onClick={() => {props.setEditing(false)}}
+                      className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"> 
+                      Back 
+                    </button>
+
+                  </div>
               </div>
             </form>
           )}

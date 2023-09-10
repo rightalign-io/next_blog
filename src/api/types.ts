@@ -10,15 +10,15 @@ export interface IUser {
     // updatedAt: string;
   }
 export interface Post {
-  title: string;
+  _id: number;
   type: string;
+  body: string;
+  title: string;
   image: string;
   author: string;
-  datePublished: string;
   headline: string;
+  datePublished: string;
   dateModified: string;
-  _id: number;
-  body: string;
 }
   
   export interface UserLoginProps {
