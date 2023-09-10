@@ -1,13 +1,24 @@
+import { Formik } from "formik";
+import { useState } from "react";
 import { useParams } from "react-router";
+import { Post } from "../api/types";
 import { useArticleStore } from "../store/articlesStore";
+import { useUserStore } from "../store/userStore";
+import EditArticleForm from "./EditArticleForm";
+interface EditProps {
+  article: Post;
+}
 
 const SingleArticle = () => {
-      const { id } = useParams()
-      const currentArticle = useArticleStore(state => state.articles).filter(item => item?._id.toString() === id)[0]
-      // console.log('current ', currentArticle);
-      return (
-  
-        <section className="text-gray-600 body-font">
+  const { id } = useParams()
+  const loggedIn = useUserStore(user => user.loggedIn)
+  const currentArticle = useArticleStore(state => state.articles).filter(item => item?._id.toString() === id)[0]
+  const [editing, setEditing] = useState<boolean>(false);
+  console.log('current ', loggedIn);
+  return (
+    <section className="text-gray-600 body-font">
+      {
+        editing ? <>
           <div className="container px-5 py-24 mx-auto flex flex-col">
             <div className="lg:w-4/6 mx-auto">
               <div className="rounded-lg h-64 overflow-hidden">
@@ -37,7 +48,7 @@ const SingleArticle = () => {
                     </svg>
                   </a>
                 <div className="mt-10 pt-5 flex justify-between border-t-2 w-5/6">
-                  <button className="bg-yellow-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  <button onClick={() => setEditing(editing)} className="bg-yellow-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Edit
                   </button>
                   <button className="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -47,9 +58,15 @@ const SingleArticle = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      );
-    }
+          </div>        
+          </> : <> 
+          <EditArticleForm article={currentArticle} />
+        </>
+      }
+      
+    </section>
+  );
+}
 
-    export default SingleArticle;
+
+export default SingleArticle;
