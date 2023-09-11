@@ -31,13 +31,16 @@ function Home() {
   }
   const [initialArticles, setInitialArticles] = useState<Post[]>([initiallPost])
   const articles = useArticleStore((state) => state.articles)
-  const [leadArticle, setLeadArticle] = useState(articles[0])
+  const [leadArticle, setLeadArticle] = useState(initiallPost)
   /*
   * cut the array in half then show the 
   */
-  const midpoint = Math.ceil(initialArticles.length / 2);
-  const row1 = initialArticles.splice(initialArticles.length/2, 0)
+ const midpoint = Math.ceil(initialArticles.length / 2);
+ const row1 = initialArticles.splice(initialArticles.length/2, 0)
   // console.log('rows: ', {r1: useArticleStore(state => state.articles), a1: initialArticles});
+  useEffect(()=> {
+    setLeadArticle(articles[0])
+  }, [articles])
 
   return (
     <div className="">
@@ -45,8 +48,9 @@ function Home() {
       {/* <MainComp /> */}
       <div className="text-gray-600 body-font overflow-hidden flex flex-wrap space-between">
         {/* create the first side shandic  */}
-        <span className="w-1/3">
-          {initialArticles && <LeadArticle article={leadArticle} />}
+        <span className="w-1/3 flec">
+          {leadArticle && <LeadArticle article={leadArticle} />}
+           
         </span>
         
         <div className="w-1/2 flex flex-wrap mt-5">

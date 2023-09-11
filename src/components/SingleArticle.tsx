@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import { useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Post } from "../api/types";
 import { useArticleStore } from "../store/articlesStore";
 import { useUserStore } from "../store/userStore";
@@ -9,10 +9,11 @@ import EditArticleForm from "./EditArticleForm";
 const SingleArticle = () => {
   const { id } = useParams()
   const tokenString = sessionStorage.getItem('user') as string
-  const sessionData = JSON.parse(tokenString)
+  // const sessionData = JSON.parse(tokenString)
   const currentArticle = useArticleStore(state => state.articles).filter(item => item?._id.toString() === id)[0]
   const [editing, setEditing] = useState<boolean>(false);
-  console.log('current ', sessionData.loggedIn, editing);
+  const navigate = useNavigate()
+  // console.log('current ', tokenString);
   return (
     <section className="text-gray-600 body-font">
       {
@@ -46,9 +47,14 @@ const SingleArticle = () => {
                     </svg>
                   </a>
                 <div className="mt-10 pt-5 flex justify-between border-t-2 w-5/6">
-                  {<button onClick={() => setEditing(!editing)} className="bg-yellow-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Edit
-                  </button>}
+                  { tokenString ? 
+                    <button onClick={() => setEditing(!editing)} className="bg-yellow-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                      Edit
+                    </button> :
+                    <button onClick={() => navigate('/')} className="bg-yellow-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                      Back
+                    </button>
+                  }
                   <button className="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     share
                   </button>

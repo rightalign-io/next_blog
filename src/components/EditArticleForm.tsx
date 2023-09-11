@@ -1,27 +1,33 @@
 import { Formik } from "formik";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { saveArticle } from "../api/blog.services";
 import { Post } from "../api/types";
 import { useArticleStore } from "../store/articlesStore";
 
-
+/*
+  * when calling this item we will have to check if newArticle exists so we show the other fields that are not usually editable.
+  * We do this so we dont break or send in complete data to the api.
+*/
 interface EditProps {
   setEditing: (editSTate: boolean) => void;
   article: Post;
+  newArticle?: Post;
 }
 
 const EditArticleForm = (props: EditProps) => {
     const { updateArticle, updatedArticle } = useArticleStore(state => state)
-    console.log('editing: ', props.article);
     const navigate = useNavigate();
-
+    const [initialVal, setInitialVal] = useState(props.article || props.newArticle)
+    const newItem = props.newArticle;
+    console.log('new Item: ', newItem);
     return (<>
       <Formik
           initialValues={{ 
-            title: props.article.title, body: props.article.body, 
-            author: props.article.author, image: props.article.image,
-            type: props.article.type, headline:props.article.headline, 
-            dateModified: `${Date.now()}`, datePublished: props.article.datePublished, _id:props.article._id}}
+            title: initialVal.title, body: initialVal.body, 
+            author: initialVal.author, image: initialVal.image,
+            type: initialVal.type, headline:initialVal.headline, 
+            dateModified: `${Date.now()}`, datePublished: initialVal.datePublished, _id:initialVal._id}}
           validate={values => {
             // const errors:{email: string} = {email: ''};
             if (!values.body) {
@@ -66,6 +72,16 @@ const EditArticleForm = (props: EditProps) => {
                       className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                       {/* {errors.email && touched.email && errors.email} */}
                   </div>
+
+                  <div className="relative mb-4">
+                    <label htmlFor="author" className="leading-7 text-sm text-gray-600">Author</label>
+                    <input type="text" id="author" name="author" 
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.author} 
+                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                      {/* {errors.email && touched.email && errors.email} */}
+                  </div>
                   <div className="relative mb-4">
                     <label htmlFor="headline" className="leading-7 text-sm text-gray-600">Headline</label>
                     <input type="text" id="headline" name="headline" 
@@ -75,6 +91,26 @@ const EditArticleForm = (props: EditProps) => {
                       className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                       {/* {errors.email && touched.email && errors.email} */}
                   </div>
+                  <div className="relative mb-4">
+                    <label htmlFor="image" className="leading-7 text-sm text-gray-600">Image</label>
+                    <input type="text" id="image" name="image" 
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.image} 
+                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                      {/* {errors.email && touched.email && errors.email} */}
+                  </div>
+                  <div className="relative mb-4">
+                    <label htmlFor="type" className="leading-7 text-sm text-gray-600">Type</label>
+                    <input type="text" id="type" name="type" 
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.type} 
+                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                      {/* {errors.email && touched.email && errors.email} */}
+                  </div>
+
+                  
                   <div className="relative mb-4">
                     <label htmlFor="body" className="leading-7 text-sm text-gray-600"> Article Body </label>
                     <textarea id="body" name="body" cols={10} rows={5}

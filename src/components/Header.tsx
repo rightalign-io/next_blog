@@ -30,6 +30,7 @@ const HeaderLG = (props: HeaderProps) => {
     ~ When user has logged in we remove guest & add the user image else show the gues thing. 
     ~ get the user from store.
   */
+
  return <header className=" text-gray-600 body-font bg-gray-200 mb-1 md: m-0">
     <div className=" flex justify-around px-5 flex-row md:mx-auto items-center">
       <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -79,7 +80,7 @@ const HeaderLG = (props: HeaderProps) => {
 }
 
 
-const Header = (status: { img: string, email: string, loggedIn: false }) => {
+const Header = (status: { img: string, email: string, loggedIn: boolean }) => {
   const [loginItem, setLoginItem] = useState({link: '/login', name: 'Logout', })
   
   /*

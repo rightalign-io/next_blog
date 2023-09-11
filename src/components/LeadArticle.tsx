@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router';
 import { Post } from '../api/types';
 import EditArticleForm from './EditArticleForm';
 import SingleArticle from './SingleArticle';
@@ -8,9 +9,9 @@ interface LeadArticleProps {
 }
 
 function LeadArticle(props: LeadArticleProps) {
-  // console.log('Lead: ', props.article);
-  
   const [editing, setEditing] = useState<boolean>(false);
+  const navigate = useNavigate()
+  
   return <>
     {
       !editing ? <div className="ml-20 mt-5">
@@ -38,9 +39,12 @@ function LeadArticle(props: LeadArticleProps) {
           </div>
         </div>      
       </div>
-      <button onClick={()=> setEditing(true)} className="w-5/6 h-10 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+      <button onClick={()=> navigate(`/view/${props.article._id}`)} className="w-5/6 h-10 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
         view
-      </button> 
+      </button>
+      <button onClick={()=> navigate(`/view/0`)} className="w-5/6 mt-5 h-10 bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
+        New
+      </button>
     </div> : <>
       <EditArticleForm article={props.article} setEditing={setEditing}/>
     </>
