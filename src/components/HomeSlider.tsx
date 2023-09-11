@@ -13,7 +13,7 @@ const HomeSlider = () => {
   return (
     <Swiper className='h-64 min-h-full my-auto mx-10 px-12'
       spaceBetween={50} slidesPerView={1}
-      onSlideChange={() => console.log('slide change')} onSwiper={(swiper) => console.log(swiper)} >
+      onSlideChange={() => console.log('slide change')} onSwiper={(swiper) => console.log('')} >
         { swipperItems.map((item, index) => {
           return <SwiperSlide data-swiper-slide-index="2" role="group" aria-label="3/4" key={index}
           className='w-11/12 swiper-slide swiper-slide-prev mb-3 bg-center' 

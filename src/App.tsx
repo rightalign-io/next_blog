@@ -21,7 +21,7 @@ function App() {
   * 'REMOVE PROP FOR CREDENTIALS SHANDIC'
   */
 
-  const { email, loggedIn, img, updateUser } = useUserStore((state) => {return state})
+  const { user, updateUser } = useUserStore((state) => {return state})
   const tokenString = sessionStorage.getItem('user') as string
   const sessionData = JSON.parse(tokenString)
   const [signedIn, setSignedIn] = useState(false)
@@ -35,14 +35,13 @@ function App() {
   useEffect(() => {
     blogArticles().then(data => {
       setArticles(data?.data);
-      return {}
   })
-  }, []);
+  }, [user]);
 
-  console.log('articles: ', );
+  // console.log('App: ', user);
   return (
     <div className="App">
-      <Header email={sessionData?.email || email} img={sessionData?.img || img} loggedIn={signedIn} />
+      <Header email={sessionData?.email || user.email} img={sessionData?.img || user.img} loggedIn={signedIn} />
       <Routes>
         <Route path="/" element={ <Home/> } />
         <Route path="articles" element={ <Articles/> } />
@@ -50,7 +49,7 @@ function App() {
         <Route path="login" element={ <Credentials updateUser={() => updateUser} /> } />
         <Route path="logout" element={ <Credentials updateUser={() => updateUser} /> } />
         <Route path="contact" element={ <Contact/> } />
-        <Route path="view/0" element={ <EditArticleForm newArticle={initiallPost} setEditing={() => console.log()} article={undefined}/> } />
+        <Route path="view/0" element={ <EditArticleForm newArticle={initiallPost} setEditing={() => console.log()} article={initiallPost}/> } />
         <Route path="view/:id" element={ <SingleArticle/> } />
       </Routes>
     </div>
