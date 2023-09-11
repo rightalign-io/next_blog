@@ -9,8 +9,9 @@ import Header from "./components/Header"
 import { useUserStore } from "./store/userStore"
 import SingleArticle from "./components/SingleArticle"
 import { useArticleStore } from "./store/articlesStore"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { blogArticles } from "./api/blog.services"
+import EditArticleForm from "./components/EditArticleForm"
 
 function App() {
   /*
@@ -23,22 +24,25 @@ function App() {
   const { email, loggedIn, img, updateUser } = useUserStore((state) => {return state})
   const tokenString = sessionStorage.getItem('user') as string
   const sessionData = JSON.parse(tokenString)
-  const currentArticle = useArticleStore(state => state.updatedArticle)
-
+  const [signedIn, setSignedIn] = useState(false)
   const setArticles = useArticleStore((article) => {return article.setArticles})
-    useEffect(() => {
-      blogArticles().then(data => {
-        setArticles(data?.data);
-        // setInitialArticles(data?.data);
-        // setLeadArticle(data?.data[0])
-        return {}
-    })
-    }, []);
+  const initiallPost = { 
+    title:'', type: '', _id: 0, body:'',
+    image: '',  author: sessionData?.email, datePublished: Date.now().toLocaleString(),  headline: '',  
+    dateModified: Date.now().toLocaleString()
+  }
+
+  useEffect(() => {
+    blogArticles().then(data => {
+      setArticles(data?.data);
+      return {}
+  })
+  }, []);
 
   console.log('articles: ', );
   return (
     <div className="App">
-      <Header email={sessionData?.email || email} img={sessionData?.img || img} loggedIn={sessionData?.logged || loggedIn} />
+      <Header email={sessionData?.email || email} img={sessionData?.img || img} loggedIn={signedIn} />
       <Routes>
         <Route path="/" element={ <Home/> } />
         <Route path="articles" element={ <Articles/> } />
@@ -46,6 +50,7 @@ function App() {
         <Route path="login" element={ <Credentials updateUser={() => updateUser} /> } />
         <Route path="logout" element={ <Credentials updateUser={() => updateUser} /> } />
         <Route path="contact" element={ <Contact/> } />
+        <Route path="view/0" element={ <EditArticleForm newArticle={initiallPost} setEditing={() => console.log()} article={undefined}/> } />
         <Route path="view/:id" element={ <SingleArticle/> } />
       </Routes>
     </div>
