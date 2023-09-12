@@ -28,6 +28,6 @@ export const useUserStore = create<UserState & UserActions>( (set, get) => ({
         set(() => ({
             user: user
         }))
-        console.log('state: ', user.email, user.token);
+        // console.log('state: ', user.email, user.token);
     },
 }));

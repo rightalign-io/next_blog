@@ -28,6 +28,7 @@ type credentialsProps = {
   ~ To seperate the styling & the logic we:
   ~ Here we're adding the style classes.
   ~ Prolly add the states * variables here.
+  ~ use the stateChange function to change the user logined or registered state
 */
 
 const ArticlesContainer = tw.div`container px-5 py-24 mx-auto animate__animated animate__bounceInUp`;
@@ -36,30 +37,26 @@ const ArticlesBody = tw.div`flex flex-wrap -m-4`;
 
 
 const Credentials = (props: credentialsProps) => {
-  const {email, img } = useUserStore(state => state)
-  console.log('credentials: ', email, img);
+
   const [credential, setCredential] = useState({login:true, forgot: false, signUp: false });
   
   return <section className="text-gray-600 body-font">
-  <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-    <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-      <img className="object-cover object-center rounded md:w-3/4" alt="hero" src="./login.jpg" />
-    </div>
-    
+  <div className="container mx-auto flex px-5 py-24 md:flex-col flex-col items-center">
+
     {
-      credential.login && <> <Login  {...credential} stateChange={() => {props.updateUser}} /></>
+      credential.login && <> <Login  {...credential} stateChange={setCredential} /></>
     }
     {
-      credential.forgot && <> <ForgotPassword {...credential} stateChange={() => setCredential} /></>
+      credential.forgot && <> <ForgotPassword {...credential} stateChange={setCredential} /></>
     }
     {
-      credential.signUp && <> <SignUp {...credential} stateChange={() => setCredential} /></>
+      credential.signUp && <> <SignUp {...credential} stateChange={setCredential} /></>
     }
-  </div>
     <span className="flex justify-between md:w-1/2 md: mx-auto">
       <button onClick={ (event) => {event.preventDefault(); setCredential({ login: false, forgot: true, signUp: false, })}} className="text-xs hover:text-green-400 text-blue-500 mt-3">Forgot Password </button>
       <button onClick={(event) => {event.preventDefault(); setCredential({ login: false, forgot: false, signUp: true, })}} className="text-xs hover:text-green-400 text-blue-500 mt-3">Sign Up</button>
     </span>
+  </div>
 </section>
   
 };
@@ -67,9 +64,8 @@ const Credentials = (props: credentialsProps) => {
 export default Credentials;
 
 const Login = (credential: credState) => {
-  
-  const LoginUser = credential.stateChange
-  
+  const [error, setError] = useState({message: ''})
+  const { updateUser } = useUserStore((state) => {return state})
   const navigate = useNavigate()
   return <>
     <Formik
@@ -88,12 +84,19 @@ const Login = (credential: credState) => {
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(async () => {
             setSubmitting(false);
-            const loginResponse = userLogin(values).then(items => {return items}).then((user)=> {
-              user.loggedIn = true
-              credential.stateChange(user)
-              sessionStorage.setItem('user', JSON.stringify(user))
-              navigate('/')
-            })
+            await userLogin(values).then(items => {return items}).then((user)=> {
+              if(user.status === 200){
+                navigate('/')
+                user.loggedIn = true
+                updateUser(user.data)
+                sessionStorage.setItem('user', JSON.stringify(user))
+              } else {
+                setError({...user.data})
+                console.log('login Response: ', user.data);
+              }
+              
+            });
+            
           }, 400);
         }}
       >
@@ -130,9 +133,22 @@ const Login = (credential: credState) => {
                 </div>
               
                 <button type="submit" disabled={isSubmitting} 
-                  className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login </button>
-                
+                  className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                    Login 
+                </button>
             </div>
+            { error.message != '' && 
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong className="font-bold">Error!</strong>
+                <span className="block sm:inline"> {error.message}.</span>
+                <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+                  <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <title>Close</title>
+                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                    </svg>
+                </span>
+              </div>
+            }
           </form>
         )}
     </Formik>
@@ -152,7 +168,7 @@ const ForgotPassword = (credential: credState) => {
    
     <button className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Reset Password </button>
     <span className="flex justify-between">
-      <button onClick={() => credential.stateChange({ login: true, forgot: false, signUp: false, })} className="text-xs hover:text-green-400 text-blue-500 mt-3">Back </button>
+      <button onClick={() => credential.stateChange({ login: true, forgot: false, signUp: false })} className="text-xs hover:text-green-400 text-blue-500 mt-3">Back </button>
     </span>
 </div>
 </div>
@@ -164,15 +180,16 @@ const SignUp = (credential: credState) => {
   name: string;
   type?: string;
 };
-  const [user, setUser] = useState({email: '', password:'', logedIn: false});
+  
   const navigate = useNavigate()
-  const LoginUser = useUserStore(state => state.updateUser)
+  const [error, setError] = useState({message: ''})
+  const { updateUser } = useUserStore(state => state)
   
   return <>
    <Formik
       initialValues={{ email: '', password: '', firstName: '', lastName:'', loggedIn: false }}
       validate={values => {
-        // const errors:{email: string} = {email: ''};
+        const errors:{email: string} = {email: ''};
         if (!values.email) {
           // errors.email = 'Required';
         } else if (
@@ -184,12 +201,14 @@ const SignUp = (credential: credState) => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(async () => {
-          // alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          userRegistration(values).then(items => {return items}).then((user)=> {
-            LoginUser(user)
-            navigate('/')
-            console.log(user);
+          userRegistration(values).then((user)=> {
+            if(user?.status === 200){
+              updateUser(user.data)
+              navigate('/')
+            } else {
+              setError({...user?.data})
+            }
           })
         }, 400);
       }}
@@ -205,9 +224,8 @@ const SignUp = (credential: credState) => {
         /* and other goodies */
       }) => (
         <form className="lg:flex-grow md:w-3/4 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center" onSubmit={handleSubmit}>
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"> Sign Up</h1>
-
             <div className="md:w-3/4 bg-white flex px-5 flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0">
+              <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"> Sign Up</h1>
               <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">We're happy for you to join us,</h2>
               <div className="relative mb-4">
                 <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
@@ -248,13 +266,23 @@ const SignUp = (credential: credState) => {
               <button type="submit" disabled={isSubmitting} 
               className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Sign Up </button>
               <span className="flex justify-between">
-              <button onClick={() => {;credential.stateChange({ login: true, forgot: false, signUp: false,user:user })}} className="text-xs hover:text-green-400 text-blue-500 mt-3">Back </button>
+              <button onClick={() => { credential.stateChange({ login: true, forgot: false, signUp: false })}} className="text-xs hover:text-green-400 text-blue-500 mt-3">Back </button>
               </span>
           </div>
-          
+          { error.message != '' && 
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong className="font-bold">Error!</strong>
+                <span className="block sm:inline"> {error.message}.</span>
+                <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+                  <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <title>Close</title>
+                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                    </svg>
+                </span>
+              </div>
+            }
         </form>
       )}
   </Formik>
-  
 </>
 }

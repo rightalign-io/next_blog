@@ -17,15 +17,14 @@ export const userLogin = async (data:UserLoginProps) =>{
     ! make sure the url is correct & data structure is correct to.
     */
     try {
-        let token = await axios.post(`${api_baseUrl}/user/login`, JSON.stringify(data), {
+        let response = await axios.post(`${api_baseUrl}/user/login`, JSON.stringify(data), {
         headers: {
             'Content-Type': 'application/json'
         } });
-
-        return token.data;        
+        return {data: response.data,loggedIn: true, status: response.status};
     } catch (error) {
-        console.log('Login Error\n', error);
-        return false
+        // console.log('Login Error\n', error.response.data.message);
+        return { data: error.response.data,loggedIn: true, status: error.response.status };
     }
 }
 
@@ -36,13 +35,13 @@ export const userRegistration = async (data:IUser) =>{
         headers: {
             'Content-Type': 'application/json'
         } });
-
-        return response.data;
         
+        return {data: response.data.data, status: response.data.status};
     } catch (error) {
-        console.log('Registration Error\n', error)
+        return { data: error.response.data,loggedIn: true, status: error.response.status };
     }
 }
+
 /*
     * First model for requests that will be needing authentication on the server side
     ~ this function will be called after we log in to get the articles.

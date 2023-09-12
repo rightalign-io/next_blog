@@ -167,5 +167,6 @@ THIS PROJECT IS MADE WITH NEXT ITS MADE WITH VITE + REACTJS
 - [ ] Solidify the functionality for the blog login & registration.
 - [x] Find out why we cannot hold the login state in the store and have it on the entire app, *updating state in wrong place in the DOM hierarchy*
 - [ ] Protect routes so use cannot access login without logging out.
+- [ ] Add error messaging for API responses + ui actions.
 - [ ] Add error handling.
 
