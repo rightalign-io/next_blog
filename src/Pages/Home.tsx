@@ -27,7 +27,7 @@ function Home() {
   }));
   const initiallPost = { 
     title:'', type: '', _id: 0, body:'',
-    image: '',  author: '', datePublished: '',  headline: '',  dateModified: ''
+    image: '',  author: '', datePublished: Date.now().toString(),  headline: '',  dateModified: Date.now().toString()
   }
   const [initialArticles, setInitialArticles] = useState<Post[]>([initiallPost])
   const articles = useArticleStore((state) => state.articles)

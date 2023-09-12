@@ -24,7 +24,7 @@ export const userLogin = async (data:UserLoginProps) =>{
         return {data: response.data,loggedIn: true, status: response.status};
     } catch (error) {
         // console.log('Login Error\n', error.response.data.message);
-        return { data: error.response.data,loggedIn: true, status: error.response.status };
+        return { data: error.response.data, loggedIn: true, status: error.response.status };
     }
 }
 
@@ -38,7 +38,7 @@ export const userRegistration = async (data:IUser) =>{
         
         return {data: response.data.data, status: response.data.status};
     } catch (error) {
-        return { data: error.response.data,loggedIn: true, status: error.response.status };
+        return { data: error.response.data, loggedIn: false, status: error.response.status };
     }
 }
 
@@ -61,18 +61,22 @@ export const saveArticle = (updates: Post) => {
     try {
         const tokenString = sessionStorage.getItem('user') as string
         const sessionData = JSON.parse(tokenString).token
+        console.log('get article:\n', updates, sessionData);
         if(sessionData){
-            
-        const article = axios.put(`${api_baseUrl}/posts/edit`, JSON.stringify(updates), {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: sessionData,
-            }}).then(res => {
+            axios.put(`${api_baseUrl}/posts/edit`, JSON.stringify(updates), {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: sessionData,
+                }}).then(res => {
                 console.log('edit response: ', res);
+                return {data: res.data.data, status: res.data.status}
             })
+        } else {
+            return { message: 'User not logged in...', status: 300 };
         }
     } catch (error) {
-        console.log('get view articel error:\n', error);
+        console.log('get view article error:\n', error.response.message);
+        // return { data: error.response.data, loggedIn: false, status: error.response.status }
     }
 }
 

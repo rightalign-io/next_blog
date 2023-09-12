@@ -58,7 +58,6 @@ const Credentials = (props: credentialsProps) => {
     </span>
   </div>
 </section>
-  
 };
 
 export default Credentials;
@@ -89,7 +88,7 @@ const Login = (credential: credState) => {
                 navigate('/')
                 user.loggedIn = true
                 updateUser(user.data)
-                sessionStorage.setItem('user', JSON.stringify(user))
+                sessionStorage.setItem('user', JSON.stringify(user.data))
               } else {
                 setError({...user.data})
                 console.log('login Response: ', user.data);
@@ -265,9 +264,7 @@ const SignUp = (credential: credState) => {
             
               <button type="submit" disabled={isSubmitting} 
               className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Sign Up </button>
-              <span className="flex justify-between">
-              <button onClick={() => { credential.stateChange({ login: true, forgot: false, signUp: false })}} className="text-xs hover:text-green-400 text-blue-500 mt-3">Back </button>
-              </span>
+              
           </div>
           { error.message != '' && 
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">

@@ -19,15 +19,17 @@ const EditArticleForm = (props: EditProps) => {
     const { updateArticle, updatedArticle } = useArticleStore(state => state)
     const navigate = useNavigate();
     const [initialVal, setInitialVal] = useState(props.article || props.newArticle)
+    const [error, setError] = useState({message: ''})
+    const [success, setSuccess] = useState({message: ''})
     const newItem = props.newArticle;
-    console.log('new Item: ', newItem);
+    
     return (<>
       <Formik
           initialValues={{ 
             title: initialVal.title, body: initialVal.body, 
             author: initialVal.author, image: initialVal.image,
             type: initialVal.type, headline:initialVal.headline, 
-            dateModified: `${Date.now()}`, datePublished: initialVal.datePublished, _id:initialVal._id}}
+            dateModified: Date.now().toString(), datePublished: Date.now().toString(), _id:initialVal._id}}
           validate={values => {
             // const errors:{email: string} = {email: ''};
             if (!values.body) {
@@ -42,10 +44,18 @@ const EditArticleForm = (props: EditProps) => {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(async () => {
               setSubmitting(false);
-              updateArticle(values);
-              saveArticle(values);
-              navigate('/')
-              // console.log(values);
+              const editResponse = saveArticle(values);
+              if(editResponse?.data?.data?.status === 200 ) {
+                navigate('/')
+              }else {
+                setError({ ...editResponse || { message: 'Some other error happened...'}})
+                setTimeout(() => { 
+                  // navigate('/login')
+                  return true;
+                }, 5000)
+              }
+              console.log(editResponse);
+              // updateArticle(values);
             }, 400);
           }}
         >
@@ -83,7 +93,25 @@ const EditArticleForm = (props: EditProps) => {
                       {/* {errors.email && touched.email && errors.email} */}
                   </div>
                   <div className="relative mb-4">
-                    <label htmlFor="headline" className="leading-7 text-sm text-gray-600">Headline</label>
+                    <label htmlFor="datePublished" className="leading-7 text-sm text-gray-600">Date Published</label>
+                    <input type="text" id="datePublished" name="datePublished" 
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.datePublished} 
+                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                      {/* {errors.email && touched.email && errors.email} */}
+                  </div>
+                  <div className="relative mb-4">
+                    <label htmlFor="dateModified" className="leading-7 text-sm text-gray-600">Date Modified</label>
+                    <input type="text" id="dateModified" name="dateModified" 
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.dateModified} 
+                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                      {/* {errors.email && touched.email && errors.email} */}
+                  </div>
+                  <div className="relative mb-4">
+                    <label htmlFor="headline" className="leading-7 text-sm text-gray-600">Head Line</label>
                     <input type="text" id="headline" name="headline" 
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -110,7 +138,6 @@ const EditArticleForm = (props: EditProps) => {
                       {/* {errors.email && touched.email && errors.email} */}
                   </div>
 
-                  
                   <div className="relative mb-4">
                     <label htmlFor="body" className="leading-7 text-sm text-gray-600"> Article Body </label>
                     <textarea id="body" name="body" cols={10} rows={5}
@@ -129,8 +156,27 @@ const EditArticleForm = (props: EditProps) => {
                       className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"> 
                       Back 
                     </button>
-
                   </div>
+                    { error.message != '' && 
+                      <div className="mt-10 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong className="font-bold">Error!</strong>
+                        <span className="block sm:inline"> {error.message}.</span>
+                        <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+                          <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <title>Close</title>
+                            <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                            </svg>
+                        </span>
+                      </div>
+                    }
+                    { success.message != '' && 
+                      <div className="mt-10 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong className="font-bold">Success!!</strong>
+                        <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                          <p className="text-sm">{success.message}.</p>
+                        </div>
+                      </div>
+                    }
               </div>
             </form>
           )}
