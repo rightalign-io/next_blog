@@ -1,12 +1,12 @@
 import React from 'react'
-import tw from "tailwind-styled-components";
+
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import MailIcon from '@mui/icons-material/Mail';
 
 const Contact =() => {
-    return (
-    <div className="text-gray-600 body-font relative bg-gray-100">
+    
+    return ( <form action="https://formsubmit.co/bd7053cbf860412096b8afd118128ff3" method="POST" className="text-gray-600 body-font relative bg-gray-100">
         <div className="container px-5 py-24 mx-auto">
             <div className="animate__animated animate__fadeIn flex flex-col text-center w-full mb-12">
                 <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Contact Us</h1>
@@ -67,7 +67,7 @@ const Contact =() => {
                         </div>
                     </div>
                     <div className="p-2 w-full">
-                    <button className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Send Meesage</button>
+                    <button  type="submit" className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Send Message</button>
                     </div>
                     <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
                     <p className="leading-normal my-5">49 Smith St.
@@ -100,7 +100,7 @@ const Contact =() => {
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     )
 }
 
