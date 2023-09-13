@@ -16,7 +16,7 @@ function About() {
 
         <div className="row mb-5 w-11/12 mx-auto">
 
-          <div className="grid grid-cols-2 gap-1 justify-items-center post-entry-2 ">
+          <div className="grid md:grid-cols-2 gap-1 justify-items-center post-entry-2 ">
             <a href="#" className="me-4 thumbnail">
               <img src="./art1.jpg" alt="" className="img-fluid" />
             </a>
@@ -29,7 +29,7 @@ function About() {
             </div>
           </div>
 
-          <div className="flex post-entry-2 half mt-5">
+          <div className="grid place-content-center post-entry-2 half mt-5 md:grid-col">
             <a href="#" className="me-4 thumbnail order-2">
               <img src="./art1.jpg" alt="" className="img-fluid" />
             </a>
@@ -41,10 +41,7 @@ function About() {
               <p>Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.</p>
             </div>
           </div>
-        
-
         </div>
-
       </div>
     </section>
 
@@ -59,20 +56,20 @@ function About() {
               </div>
             </div>
           </div>
-         <span className='grid grid-cols-3 gap-4 content-center'>
-         <div className="w-5/6 justify-items-center grid  mb-5">
+         <span className='grid md:grid-cols-3 gap-4 content-center'>
+         <div className="w-full text-center justify-items-center grid mb-5">
             <img src="./art2.jpg" alt="" className="rounded-full w-24 w-50 mb-4" />
             <h4>Cameron Williamson</h4>
             <span className="d-block mb-3 text-uppercase">Founder &amp; CEO</span>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
           </div>
-          <div className="w-5/6 justify-items-center grid  mb-5">
+          <div className="w-full text-center justify-items-center grid mb-5 mx-auto">
             <img src="./art3.jpg" alt="" className="rounded-full w-24 w-50 mb-4" />
             <h4>Wade Warren</h4>
             <span className="d-block mb-3 text-uppercase">Founder, VP</span>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
           </div>
-          <div className="w-5/6 justify-items-center grid  mb-5">
+          <div className="w-full text-center justify-items-center grid mb-5">
             <img src="./art3.jpg" alt="" className="rounded-full w-24 w-50 mb-4" />
             <h4>Jane Cooper</h4>
             <span className="d-block mb-3 text-uppercase">Editor Staff</span>
