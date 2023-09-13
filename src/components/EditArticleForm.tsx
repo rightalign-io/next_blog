@@ -152,7 +152,7 @@ const EditArticleForm = (props: EditProps) => {
                       className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"> 
                       Publish 
                     </button>
-                    <button disabled={isSubmitting} onClick={() => {props.setEditing(false)}}
+                    <button disabled={isSubmitting} onClick={() => {navigate(`/`)}}
                       className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"> 
                       Back 
                     </button>
