@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { saveArticle } from "../api/blog.services";
 import { Post } from "../api/types";
+import Articles from "../Pages/Articles";
 import { useArticleStore } from "../store/articlesStore";
 
 /*
@@ -29,7 +30,7 @@ const EditArticleForm = (props: EditProps) => {
             title: initialVal.title, body: initialVal.body, 
             author: initialVal.author, image: initialVal.image,
             type: initialVal.type, headline:initialVal.headline, 
-            dateModified: Date.now().toString(), datePublished: Date.now().toString(), _id:initialVal._id}}
+            dateModified: Date.now().toString(), datePublished: Date.now().toString(), _id:props.article._id}}
           validate={values => {
             // const errors:{email: string} = {email: ''};
             if (!values.body) {
@@ -45,7 +46,8 @@ const EditArticleForm = (props: EditProps) => {
             setTimeout(async () => {
               setSubmitting(false);
               const editResponse = saveArticle(values);
-              if(editResponse?.data?.data?.status === 200 ) {
+              if(await editResponse?.status === 200 ) {
+                setSuccess({ ...editResponse || { message: 'Something good...'}})
                 navigate('/')
               }else {
                 setError({ ...editResponse || { message: 'Some other error happened...'}})
@@ -54,8 +56,6 @@ const EditArticleForm = (props: EditProps) => {
                   return true;
                 }, 5000)
               }
-              console.log(editResponse);
-              // updateArticle(values);
             }, 400);
           }}
         >

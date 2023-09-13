@@ -86,14 +86,11 @@ const Login = (credential: credState) => {
             await userLogin(values).then(items => {return items}).then((user)=> {
               if(user.status === 200){
                 navigate('/')
-                user.loggedIn = true
                 updateUser(user.data)
                 sessionStorage.setItem('user', JSON.stringify(user.data))
               } else {
                 setError({...user.data})
-                console.log('login Response: ', user.data);
-              }
-              
+              }              
             });
             
           }, 400);

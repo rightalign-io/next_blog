@@ -57,26 +57,34 @@ export const blogArticles = async ():Promise<AxiosResponse<any, any> | never[]> 
     }
 }
 
-export const saveArticle = (updates: Post) => {
+type EditArticle = {
+    data: any;
+    message: string;
+    status?: number;
+}
+
+export const saveArticle = (updates: Post): EditArticle => {
     try {
         const tokenString = sessionStorage.getItem('user') as string
         const sessionData = JSON.parse(tokenString).token
-        console.log('get article:\n', updates, sessionData);
-        if(sessionData){
-            axios.put(`${api_baseUrl}/posts/edit`, JSON.stringify(updates), {
+        // console.log('updates: ', updates);
+        if(sessionData) {
+            const response = axios.put(`${api_baseUrl}/posts/edit`, JSON.stringify(updates), {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: sessionData,
-                }}).then(res => {
-                console.log('edit response: ', res);
-                return {data: res.data.data, status: res.data.status}
+                }}
+            ).then(res => {
+                return {data: res.data, status: res.data.status}
             })
+            // console.log('get view article error:\n', response);
+            return response as unknown as EditArticle;
         } else {
-            return { message: 'User not logged in...', status: 300 };
+            return {data: null, message: 'User not logged in...', status: 300 };
         }
     } catch (error) {
-        console.log('get view article error:\n', error.response.message);
-        // return { data: error.response.data, loggedIn: false, status: error.response.status }
+        console.log('get view article error:\n', error);
+        return { data: error.response, loggedIn: false, status: error }
     }
 }
 

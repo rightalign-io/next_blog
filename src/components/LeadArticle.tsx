@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import { Post } from '../api/types';
+import { useUserStore } from '../store/userStore';
 import EditArticleForm from './EditArticleForm';
 import SingleArticle from './SingleArticle';
 
@@ -10,8 +11,9 @@ interface LeadArticleProps {
 
 function LeadArticle(props: LeadArticleProps) {
   const [editing, setEditing] = useState<boolean>(false);
+  const { user } = useUserStore((state) => {return state})
   const navigate = useNavigate()
-  
+  console.log('user: ', user);
   return <>
     {
       !editing ? <div className="ml-20 mt-5">
@@ -45,6 +47,7 @@ function LeadArticle(props: LeadArticleProps) {
       <button onClick={()=> navigate(`/view/0`)} className="w-5/6 mt-5 h-10 bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
         New
       </button>
+      
     </div> : <>
       <EditArticleForm article={props.article} setEditing={setEditing}/>
     </>
