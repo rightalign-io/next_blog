@@ -34,7 +34,7 @@ function App() {
 
   useEffect(() => {
     blogArticles().then(data => {
-      setArticles(data?.data);
+      setArticles(data);
   })
   }, [user]);
 

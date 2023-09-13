@@ -24,7 +24,7 @@ export const userLogin = async (data:UserLoginProps) =>{
         return {data: response.data,loggedIn: true, status: response.status};
     } catch (error) {
         // console.log('Login Error\n', error.response.data.message);
-        return { data: error.response.data, loggedIn: true, status: error.response.status };
+        return { data: null, loggedIn: true, status: 309 };
     }
 }
 
@@ -38,7 +38,7 @@ export const userRegistration = async (data:IUser) =>{
         
         return {data: response.data.data, status: response.data.status};
     } catch (error) {
-        return { data: error.response.data, loggedIn: false, status: error.response.status };
+        return { data: null, loggedIn: true, status: 309 };
     }
 }
 
@@ -47,13 +47,13 @@ export const userRegistration = async (data:IUser) =>{
     ~ this function will be called after we log in to get the articles.
     ! when making post requests that need to be authentified use the headers -> Authorization attribute so the work.
 */
-export const blogArticles = async ():Promise<AxiosResponse<any, any> | never[]> =>{ 
+export const blogArticles = async () =>{ 
     
     try {
-       return await axios.get(`${api_baseUrl}/posts/`)
+       return await (await axios.get(`${api_baseUrl}/posts/`)).data
     } catch (error) {
         console.log('Articles Error\n', error)
-        return []
+        return { data: null, message: 'Sorry, getting articles error...', status: 309 }
     }
 }
 
@@ -82,9 +82,9 @@ export const saveArticle = (updates: Post): EditArticle => {
         } else {
             return {data: null, message: 'User not logged in...', status: 300 };
         }
-    } catch (error:{ data: any, response: any, status: number}) {
+    } catch (error) {
         // console.log('get view article error:\n', error);
-        return { data: error.response, message: error.response.data.message, status: error.status }
+        return { data: null, message:'Sorry, Edit Article Error...', status: 309 }
     }
 }
 
