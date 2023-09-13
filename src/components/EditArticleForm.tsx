@@ -46,13 +46,13 @@ const EditArticleForm = (props: EditProps) => {
             setTimeout(async () => {
               setSubmitting(false);
               const editResponse = saveArticle(values);
-              if(await editResponse?.status === 200 ) {
+              const status = await editResponse;
+              if(status.status === 200 ) {
                 setSuccess({ ...editResponse || { message: 'Something good...'}})
                 navigate('/')
               }else {
                 setError({ ...editResponse || { message: 'Some other error happened...'}})
                 setTimeout(() => { 
-                  // navigate('/login')
                   return true;
                 }, 5000)
               }
