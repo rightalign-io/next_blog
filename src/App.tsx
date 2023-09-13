@@ -38,7 +38,6 @@ function App() {
   })
   }, [user]);
 
-  // console.log('App: ', user);
   return (
     <div className="App">
       <Header email={sessionData?.email || user?.email} img={sessionData?.img || user?.img} loggedIn={signedIn} />

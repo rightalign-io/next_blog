@@ -13,7 +13,7 @@ function LeadArticle(props: LeadArticleProps) {
   const [editing, setEditing] = useState<boolean>(false);
   const { user } = useUserStore((state) => {return state})
   const navigate = useNavigate()
-  console.log('user: ', user);
+  
   return <>
     {
       !editing ? <div className="ml-20 mt-5">
