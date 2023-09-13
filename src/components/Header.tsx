@@ -12,10 +12,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useUserStore } from "../store/userStore";
 import { links } from "../api/types";
+import { useNavigate } from "react-router";
+import Logout from "@mui/icons-material/Logout";
 
 type HeaderProps={
   email: string;
@@ -69,11 +73,11 @@ const HeaderLG = (props: HeaderProps) => {
           </>
         }
       </nav>
-      <span className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+      <span className="invisible md:visible inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
         <Socials />
       </span>
       <span className="sm:visable md:hidden" >
-        <TemporaryDrawer />
+        <TemporaryDrawer email={props.email}  />
       </span>
     </div>
   </header>
@@ -91,21 +95,18 @@ const Header = (status: { img: string, email: string, loggedIn: boolean }) => {
   const Container = tw.header`invisible absolute top-1 left-5 text-gray-600 body-font links md:visible`;
   const GridItem = tw.div`animate__animated animate__bounceInUpInUp animate__delay-1s`
   return (<>
-    <span className=" sm:visable md:hidden">
-      {/* <TemporaryDrawer /> */}
-    </span>
     <HeaderLG email={status.email} img={status.img}  />
     </>
   );
 }
+interface DrawerProps {
+  email: string;
+}
 
-function TemporaryDrawer() {
-  const [state, setState] = useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+function TemporaryDrawer(props: DrawerProps) {
+  
+  const [loginItem, setLoginItem] = useState(props.email && props.email.length > 0 ? { link: '/login', name:'Logout'}:{ link: '/login', name: 'Login' })
+  const [state, setState] = useState({ top: false, left: false, bottom: false, right: false,});
 
   const toggleDrawer =  (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -118,8 +119,18 @@ function TemporaryDrawer() {
       }
 
       setState({ ...state, [anchor]: open });
-    };
-
+  };
+  const { updateUser } = useUserStore((state) => {return state})
+  const navigate = useNavigate()
+const Logout = () => {
+  sessionStorage.removeItem('user')
+  updateUser({
+    email: "",
+    token: "",
+    img: ""
+  })
+ alert('logging out')
+  }
   const list = (anchor: Anchor) => (
     <Box
       sx={{ width: anchor === 'left' || anchor === 'right' ? 'auto' : 250 }}
@@ -128,17 +139,38 @@ function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {links.map((text, index) => (
-              <a href={text.link} key={text.link}>
-          <ListItem key={text.link} disablePadding>
+      { !props.email ? 
+          (<a href={loginItem.link}>
+          <ListItem key={'text.link2'} disablePadding>
             <ListItemButton> 
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <AccountCircleIcon />
               </ListItemIcon>
-              <ListItemText primary={text.name} />
+              <ListItemText primary={loginItem.name} />
             </ListItemButton>
-          </ListItem>
-            </a>
+          </ListItem> 
+          </a>) : 
+          <a href={loginItem.link} onClick={() => Logout()}>
+            <ListItem disablePadding>
+            <ListItemButton> 
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary={loginItem.name} />
+            </ListItemButton>
+        </ListItem></a>
+        }
+        {links.map((text, index) => (
+          <a href={text.link} key={text.link}>
+            <ListItem key={text.link} disablePadding>
+              <ListItemButton> 
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text.name} />
+              </ListItemButton>
+            </ListItem>
+          </a>
         ))}
       </List>
     </Box>

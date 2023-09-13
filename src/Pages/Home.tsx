@@ -48,15 +48,14 @@ function Home() {
       {/* <MainComp /> */}
       <div className="text-gray-600 body-font overflow-hidden flex flex-wrap space-between">
         {/* create the first side shandic  */}
-        <span className="w-1/3 flec">
+        <span className="md:w-1/3 flex">
           {leadArticle && <LeadArticle article={leadArticle} />}
-           
         </span>
         
-        <div className="w-1/2 flex flex-wrap mt-5">
+        <div className="md:w-1/2 grid md:grid-cols-2 mx-auto">
           {articles && articles.map((article, index) =>
             // Only do this if items have no stable IDs
-            <span className="w-1/2" key={index}>
+            <span className="w-full" key={index}>
               <SubArticle article={article} />
             </span>
           )}       
