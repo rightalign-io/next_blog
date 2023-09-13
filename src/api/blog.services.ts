@@ -82,9 +82,9 @@ export const saveArticle = (updates: Post): EditArticle => {
         } else {
             return {data: null, message: 'User not logged in...', status: 300 };
         }
-    } catch (error) {
-        console.log('get view article error:\n', error);
-        return { data: error.response, loggedIn: false, status: error }
+    } catch (error:{ data: any, response: any, status: number}) {
+        // console.log('get view article error:\n', error);
+        return { data: error.response, message: error.response.data.message, status: error.status }
     }
 }
 
