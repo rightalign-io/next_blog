@@ -45,6 +45,7 @@ export interface Post {
   // env.local
 export const NEXT_PUBLIC_UNSPLASH_CLIENT_ID="0xMKBN204nHKnZ5xjrcv96yOqVRsuemZa6mQfXgjEv0"
 
+export const base_api = "https://apiv1-v2ll.onrender.com"
 
 export const links = [
   {link: '/', name: 'Blog', },

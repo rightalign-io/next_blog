@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios"
 import { useArticleStore } from "../store/articlesStore";
 import { useUserStore } from "../store/userStore";
-import { IUser, Post, UserLoginProps } from "./types";
+import { base_api, IUser, Post, UserLoginProps } from "./types";
 
 /*
     * Todo:
@@ -10,7 +10,7 @@ import { IUser, Post, UserLoginProps } from "./types";
     ~ move the constants, types & interfaces out of this file.
 */
 
-const api_baseUrl = 'http://localhost:5000';
+const api_baseUrl = base_api;
 export const userLogin = async (data:UserLoginProps) =>{ 
     /*
     ! make sure the content-type is application json, then wrap the post data with json.stringify.
