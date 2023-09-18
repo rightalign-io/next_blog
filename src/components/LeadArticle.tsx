@@ -13,7 +13,14 @@ function LeadArticle(props: LeadArticleProps) {
   const [editing, setEditing] = useState<boolean>(false);
   const { user } = useUserStore((state) => {return state})
   const navigate = useNavigate()
-  
+  console.log('user: ', user)
+  const createArticle = () => {
+    if(user && user.token != ''){
+      navigate(`/view/0`);
+    } else {
+      alert('Please Login.')
+    }
+  }
   return <>
     {
       !editing ? <div className="md:flex md:flex-col grid md:ml-20 mt-5">
@@ -44,7 +51,7 @@ function LeadArticle(props: LeadArticleProps) {
         <button onClick={()=> navigate(`/view/${props.article._id}`)} className="mx-5 md:w-5/6 h-10 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
           view
         </button>
-        <button onClick={()=> navigate(`/view/0`)} className="mx-5 md:w-5/6 mt-5 h-10 bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
+        <button onClick={()=> createArticle()} className="mx-5 md:w-5/6 mt-5 h-10 bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
           New
         </button>
       
