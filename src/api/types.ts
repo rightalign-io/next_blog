@@ -53,3 +53,18 @@ export const links = [
   {link: '/about', name: 'About', },
   {link: '/contact', name: 'Contact', },
 ];
+
+export type credState = {
+  login:boolean;
+  forgot: boolean;
+  signUp: boolean;
+  user?:string;
+  stateChange: Dispatch<SetStateAction<{ login: boolean; forgot: boolean; signUp: boolean; }>>;
+}
+
+export type credentialsProps = {
+  updateUser: (user: IUser) => void;
+  // login:boolean;
+  // signUp: boolean;
+  // stateChange?: Dispatch<SetStateAction<{ login: boolean; forgot: boolean; signUp: boolean; }>>;
+}
