@@ -50,7 +50,8 @@ export const userRegistration = async (data:IUser) =>{
 export const blogArticles = async () =>{ 
     
     try {
-       return await (await axios.get(`${api_baseUrl}/posts/`)).data
+        console.log(await (await axios.get(`${api_baseUrl}/posts/`)).data);
+        return await (await axios.get(`${api_baseUrl}/posts/`)).data
     } catch (error) {
         console.log('Articles Error\n', error)
         return { data: null, message: 'Sorry, getting articles error...', status: 309 }
