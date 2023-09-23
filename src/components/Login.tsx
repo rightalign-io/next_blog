@@ -101,5 +101,6 @@ const Login = (credential: credState) => {
           )}
       </Formik>
     </>
-    }
-  export default Login;
+}
+
+export default Login;

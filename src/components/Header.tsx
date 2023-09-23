@@ -35,7 +35,7 @@ const HeaderLG = (props: HeaderProps) => {
     ~ get the user from store.
   */
 
- return <header className="border-b-2 text-gray-600 body-font bg-gray-200 mb-1 md: m-0">
+ return <header className="border-b-2 text-gray-600 body-font bg-gray-200 mb-1">
     <div className=" flex justify-around px-5 flex-row md:mx-auto items-center">
       <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
         <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--GyB_U5jy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a9mi84xpp6i6q4yn28go.png" width="150px" alt="" />

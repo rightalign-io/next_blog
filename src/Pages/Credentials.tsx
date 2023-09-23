@@ -1,13 +1,5 @@
-import Button from "@mui/material/Button";
-import { convertLength } from "@mui/material/styles/cssUtils";
-import { Formik } from "formik";
-import {  Dispatch, SetStateAction, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useState } from "react";
 import tw from "tailwind-styled-components";
-import { userLogin, userRegistration } from "../api/blog.services";
-import { BrowserRouter as Router, Routes, Route }
-    from "react-router-dom";
-import { useUserStore } from "../store/userStore";
 import { credentialsProps, IUser } from "../api/types";
 import Login from "../components/Login";
 import ForgotPassword from "../components/ForgotPassword";
@@ -30,7 +22,7 @@ const Credentials = (props: credentialsProps) => {
   const [credential, setCredential] = useState({login:true, forgot: false, signUp: false });
   
   return <section className="text-gray-600 body-font">
-  <div className="container mx-auto flex px-5 py-24 flex-col items-center">
+  <div className="container mx-auto flex px-5 flex-col items-center md:py-24 ">
 
     {
       credential.login && <> <Login  {...credential} stateChange={setCredential} /></>
@@ -41,10 +33,7 @@ const Credentials = (props: credentialsProps) => {
     {
       credential.signUp && <> <SignUp {...credential} stateChange={setCredential} /></>
     }
-    {/* <span className="flex flex-col w-5/6 md:flex-row md:justify-around md:w-1/2 ">
-      <button onClick={ (event) => {event.preventDefault(); setCredential({ login: false, forgot: true, signUp: false, })}} className="w-fit text-xs text-white bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  hover:text-green-400  mt-3">Forgot Password </button>
-      <button onClick={(event) => {event.preventDefault(); setCredential({ login: false, forgot: false, signUp: true, })}} className="w-fit text-xs text-white bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:text-green-400 mt-3">Sign Up</button>
-    </span> */}
+    
   </div>
 </section>
 };

@@ -10,7 +10,7 @@ import { base_api, IUser, Post, UserLoginProps } from "./types";
     ~ move the constants, types & interfaces out of this file.
 */
 
-const api_baseUrl = base_api;
+const api_baseUrl = 'http://localhost:5000';
 export const userLogin = async (data:UserLoginProps) =>{ 
     /*
     ! make sure the content-type is application json, then wrap the post data with json.stringify.
@@ -28,7 +28,7 @@ export const userLogin = async (data:UserLoginProps) =>{
     }
 }
 
-export const userRegistration = async (data:IUser) =>{ 
+export const userRegistration = async (data:IUser) => { 
     
     try {
         let response = await axios.post(`${api_baseUrl}/user/register`, JSON.stringify(data), {
@@ -89,7 +89,19 @@ export const saveArticle = (updates: Post): EditArticle => {
     }
 }
 
-
+export const passwordReset = async (data:string) => { 
+    
+    try {
+        let response = await axios.post(`${api_baseUrl}/user/forgotpassword`, JSON.stringify({ email: data}), {
+        headers: {
+            'Content-Type': 'application/json'
+        } });
+        
+        return {data: response.data, status: response.data.status};
+    } catch (error) {
+        return { data: null, loggedIn: true, status: 309 };
+    }
+}
 
 /*
 * Todo:
