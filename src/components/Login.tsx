@@ -70,11 +70,20 @@ const Login = (credential: credState) => {
                       value={values.password}
                       className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                   </div>
-                
+                                  
                   <button type="submit" disabled={isSubmitting} 
                     className="w-full md:w-1/2 mx-auto py-2 px-6 text-xs text-white bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  hover:text-green-400  mt-3">
-                      Login 
+                      Submit 
                   </button>
+                  
+                  <span className="md:flex justiify-between gap-10">
+                    <button onClick={ (event) => {event.preventDefault(); credential.stateChange({ login: false, forgot: true, signUp: false, })}} className="w-full md:w-1/2 place-self-center text-xs text-white bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-3">
+                        Forgot Password
+                    </button>
+                    <button onClick={(event) => {event.preventDefault(); credential.stateChange({ login: false, forgot: false, signUp: true, })}} className="w-full md:w-1/2 place-self-center text-xs text-white bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-3">
+                        Sign Up
+                    </button>
+                </span>
               </div>
               { error.message != '' && 
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">

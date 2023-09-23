@@ -41,10 +41,10 @@ const Credentials = (props: credentialsProps) => {
     {
       credential.signUp && <> <SignUp {...credential} stateChange={setCredential} /></>
     }
-    <span className="flex flex-col w-5/6 md:flex-row md:justify-around md:w-1/2 ">
+    {/* <span className="flex flex-col w-5/6 md:flex-row md:justify-around md:w-1/2 ">
       <button onClick={ (event) => {event.preventDefault(); setCredential({ login: false, forgot: true, signUp: false, })}} className="w-fit text-xs text-white bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  hover:text-green-400  mt-3">Forgot Password </button>
       <button onClick={(event) => {event.preventDefault(); setCredential({ login: false, forgot: false, signUp: true, })}} className="w-fit text-xs text-white bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:text-green-400 mt-3">Sign Up</button>
-    </span>
+    </span> */}
   </div>
 </section>
 };

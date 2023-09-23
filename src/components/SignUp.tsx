@@ -90,7 +90,15 @@ const SignUp = (credential: credState) => {
                 </div>
               
                 <button type="submit" disabled={isSubmitting} 
-                className="w-1/2 mx-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Sign Up </button>
+                className="w-full text-xs text-white bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 md:w-1/2 place-self-center text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-3">Submit </button>
+                <span className="md:flex justiify-between gap-10">
+                    <button onClick={ (event) => {event.preventDefault(); credential.stateChange({ login: false, forgot: true, signUp: false, })}} className="w-full md:w-1/2 place-self-center text-xs text-white bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-3">
+                        Forgot Password
+                    </button>
+                    <button onClick={(event) => {event.preventDefault(); credential.stateChange({ login: true, forgot: false, signUp: false, })}} className="w-full md:w-1/2 place-self-center text-xs text-white bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-3">
+                        Sign In
+                    </button>
+                </span>
                 
             </div>
             { error.message != '' && 
