@@ -10,8 +10,8 @@ import { BrowserRouter as Router, Routes, Route }
 import { useUserStore } from "../store/userStore";
 import { credentialsProps, IUser } from "../api/types";
 import Login from "../components/Login";
-import ForgotPassword from "../components/Forgotpassword";
-import SignUp from "../components/Signup";
+import ForgotPassword from "../components/ForgotPassword";
+import SignUp from "../components/SignUp";
 
 /*
   ~ To seperate the styling & the logic we:
