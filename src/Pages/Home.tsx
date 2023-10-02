@@ -48,7 +48,7 @@ function Home() {
       <HomeSlider />
       <div className="text-gray-600 body-font overflow-hidden flex flex-wrap space-between">
         {/* create the first side shandic  */}
-        <span className="md:w-1/3 flex">
+        <span className="md: md:w-1/3 flex">
           {leadArticle && <LeadArticle article={leadArticle} />}
         </span>
         
@@ -61,7 +61,7 @@ function Home() {
           )}       
         </div>
          
-      { !articles && <Loading />}
+        { !articles && <Drip /> }
         {/* < Trending /> */}
       </div>
     </div>
