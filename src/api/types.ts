@@ -70,3 +70,5 @@ export type credentialsProps = {
   // signUp: boolean;
   // stateChange?: Dispatch<SetStateAction<{ login: boolean; forgot: boolean; signUp: boolean; }>>;
 }
+
+export const api_baseUrl = 'https://apiv1-v2ll.onrender.com';

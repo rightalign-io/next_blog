@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import SingleArticle from "../components/SingleArticle";
 import { useArticleStore } from "../store/articlesStore";
+import Loading from "../components/Loading";
 
 interface HomeProps {
   articles: Post[];
@@ -45,7 +46,6 @@ function Home() {
   return (
     <div className="">
       <HomeSlider />
-      {/* <MainComp /> */}
       <div className="text-gray-600 body-font overflow-hidden flex flex-wrap space-between">
         {/* create the first side shandic  */}
         <span className="md:w-1/3 flex">
@@ -61,6 +61,7 @@ function Home() {
           )}       
         </div>
          
+      { !articles && <Loading />}
         {/* < Trending /> */}
       </div>
     </div>
