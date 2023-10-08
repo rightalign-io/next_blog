@@ -5,6 +5,7 @@ import { Post } from "../api/types";
 import { useArticleStore } from "../store/articlesStore";
 import { useUserStore } from "../store/userStore";
 import EditArticleForm from "./EditArticleForm";
+import MarkdownBody from "./MarkdownBody";
 
 const SingleArticle = () => {
   const { id } = useParams()
@@ -41,7 +42,8 @@ const SingleArticle = () => {
                     {currentArticle?.title}
                   </h1>
                   <p className="leading-relaxed text-lg mb-4">
-                    {currentArticle?.body}
+                    {/* {currentArticle?.body} */}
+                    <MarkdownBody markdown ={currentArticle?.body} />
                   </p>
                   <a href="link.." className="text-indigo-500 inline-flex items-center">Learn More
                     <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-4 h-4 ml-2" viewBox="0 0 24 24">

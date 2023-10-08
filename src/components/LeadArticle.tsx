@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { Post } from '../api/types';
 import { useUserStore } from '../store/userStore';
 import EditArticleForm from './EditArticleForm';
+import MarkdownBody from './MarkdownBody';
 import SingleArticle from './SingleArticle';
 
 interface LeadArticleProps {
@@ -33,10 +34,10 @@ function LeadArticle(props: LeadArticleProps) {
               <span className="date">{props.article.type}</span> <span className="mx-1">•</span> <span>{props.article.datePublished}</span>
               </div>
             <h2>
-              <a href="#" className="leading-3 font-bold text-lg">{props.article.headline}</a>
+              <a href="#" className="leading-3 font-bold text-lg">{props.article.title}</a>
             </h2>
             <p className="">
-              {props.article.body}
+              <MarkdownBody markdown= {props.article.headline} />
               </p>
             <div className="author flex mt-5 items-center">
               <div className="photo">
