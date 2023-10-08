@@ -23,9 +23,9 @@ const SubArticle = ( article: SubArticleProps) => {
         <img className="w-full" src="./art1.jpg" alt="Sunset in the mountains" />
         <div className="my-5 px-6 py-4 h-48">
           <div className="font-bold text-xl mb-2">{article.article.title}</div>
-          <p className="h-32 overflow-y-hidden break-all my-5 text-gray-700 text-base">
+          <span className="h-32 overflow-y-hidden break-all my-5 text-gray-700 text-base">
             {article.article.headline}
-          </p>
+          </span>
         </div>
         <div className="px-6 pt-4 pb-2">
           <button onClick={() => { navigate(`/view/${article.article._id}`)}} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">View</button>
