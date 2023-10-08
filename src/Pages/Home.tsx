@@ -53,7 +53,7 @@ function Home() {
         </span>
         
         <div className="md:w-1/2 grid md:grid-cols-2 mx-auto">
-          {articles && articles.map((article, index) =>
+          {articles && articles?.map((article, index) =>
             // Only do this if items have no stable IDs
             <span className="w-full" key={index}>
               <SubArticle article={article} />
@@ -61,7 +61,7 @@ function Home() {
           )}       
         </div>
          
-        { !articles && <Drip /> }
+        { articles.length === 0 && <Drip /> }
         {/* < Trending /> */}
       </div>
     </div>
